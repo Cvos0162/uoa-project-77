@@ -1,6 +1,8 @@
 import nltk
 import pdfplumber
 
+import tensorflow
+
 file = pdfplumber.open('test.pdf')
 text = ""
 
