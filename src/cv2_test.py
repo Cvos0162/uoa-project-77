@@ -1,13 +1,17 @@
+#Thresholding and contouring:
+#ensure the page1.jpg file is in the same folder as this script
+#to close opened windows, focus on any window and press ESC (or manually 'x' out of each one)
+
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 from pdf2image import convert_from_path
 
 #CONVERTING PDF TO IMAGE
-pages = convert_from_path('../sample/NZBC-E2#3.8.pdf', 500)
+#pages = convert_from_path('../sample/NZBC-E2#3.8.pdf', 500)
 
 #SAVING FIRST PAGE
-pages[0].save('../output/page1.jpg', 'JPEG')
+#pages[0].save('../output/page1.jpg', 'JPEG')
 
 #global threshold value
 threshold = 200
