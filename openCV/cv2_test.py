@@ -10,16 +10,16 @@ from pdf2image import convert_from_path
 #pages = convert_from_path('NZBC-G4#3.4.pdf', 500)
 
 #SAVING FIRST PAGE
-#pages[6].save('page7.jpg', 'JPEG')
+#pages[20].save('page20.jpg', 'JPEG')
 
 #threshold value (image binary thresholding)
-threshold = 220
+threshold = 200
 
-#distance threshold (contour association)
-cDistance = 125
+#distance thresholds (contour association)
+cDistance = 150
 
 #read page, convert to grayscale and initial threshold
-page = cv2.imread('page7.jpg')
+page = cv2.imread('page20.jpg')
 page_gray = cv2.cvtColor(page, cv2.COLOR_BGR2GRAY)
 ret, page_thresh = cv2.threshold(page_gray, threshold, 255, cv2.THRESH_BINARY)
 
@@ -38,65 +38,63 @@ contours,_ = cv2.findContours(page_thresh, cv2.RETR_TREE,
                                       cv2.CHAIN_APPROX_NONE)
 
 #if you want to simply draw all contours
-cv2.drawContours(contour_disp, contours, -1, (0,0,255), 2)
+cv2.drawContours(contour_disp, contours, -1, (0,0,255), 1)
 
-xGroup = 0
-yGroup = 0
-endX = 0
-endY = 0
+elementCount = 0
 
-xPrev = -1000
-yPrev = -1000
+while len(contours) > 1:
+    xStart = pageWidth-1
+    xEnd = 0
+    yStart = pageHeight-1
+    yEnd = 0
 
-listElement = 0
+    for j in range(3):
+        for i in range(len(contours)):
+            contour = contours[i]
+            (x,y,w,h) = cv2.boundingRect(contour)
 
-for contour in contours:
-    (x,y,w,h) = cv2.boundingRect(contour)
+            #ignore large contours (page border)
+            if cv2.contourArea(contour) > contourOversize:
+                continue
 
-    #ignore small contours (noise)
-    if cv2.contourArea(contour) < 100:
-        continue
+            cv2.rectangle(grouped_disp, (x,y),(x+w,y+h),(255,0,0),1)
 
-    #determine if contour is within threshold, if not finalise previous
-    #bounding box and draw
-    if abs(x - xPrev) < cDistance or abs(y - yPrev) < cDistance:
-        if x < xGroup:
-            xGroup = x
-        if y < yGroup:
-            yGroup = y
-        if x+w > endX:
-            endX = x+w
-        if y+h > endY:
-            endY = y+h
-    else:
-        if xPrev != -1000 and yPrev != -1000:
-            wGroup = endX - xGroup
-            hGroup = endY - yGroup
+            if xEnd == 0 or yEnd == 0:
+                xStart = x
+                yStart = y
+                xEnd = x+w
+                yEnd = y+h
+                
+            if x < xEnd+cDistance and x > xStart-cDistance and y < yEnd+cDistance and y > yStart-cDistance:
+                cv2.rectangle(grouped_disp, (x,y),(x+w,y+h),(0,255,0),1)
 
-            if wGroup*hGroup < contourOversize:
-                cv2.rectangle(grouped_disp, (xGroup,yGroup),
-                              (xGroup+wGroup,yGroup+hGroup),(0,0,255),2)
+                if x < xStart:
+                    xStart = x
+                if x+w > xEnd:
+                    xEnd = x+w
+                if y < yStart:
+                    yStart = y
+                if y+h > yEnd:
+                    yEnd = y+h
 
-        xGroup = x
-        yGroup = y
-        endX = x+w
-        endY = y+h
-        
-    xPrev = x
-    yPrev = y
+    wGroup = xEnd - xStart
+    hGroup = yEnd - yStart
 
+    elementCount += 1
+    cv2.rectangle(grouped_disp, (xStart,yStart),(xEnd,yEnd),(0,0,255),2)
+    #remove contours inside element box from list
+    for i in range(len(contours)-1,-1,-1):
+        contour = contours[i]
+        (x,y,w,h) = cv2.boundingRect(contour)
 
-wGroup = endX - xGroup
-hGroup = endY - yGroup
-cv2.rectangle(grouped_disp, (xGroup,yGroup),(xGroup+wGroup,yGroup+hGroup),(0,0,255),2)
-    
+        if (x < xEnd and x >= xStart) and (y < yEnd and y >= yStart):
+            del contours[i]
+            #cv2.rectangle(grouped_disp, (x,y),(x+w,y+h),(255,0,0),1)
+
+print(elementCount)
 #image is 4134x5847 scale down
-#for i in range(3):
-#    page_disp = cv2.pyrDown(page_disp)
-#    thresh_disp = cv2.pyrDown(thresh_disp)
-#    contour_disp = cv2.pyrDown(contour_disp)
-
-for i in range(2):
+for i in range(3):
+    #thresh_disp = cv2.pyrDown(thresh_disp)
     contour_disp = cv2.pyrDown(contour_disp)
     grouped_disp = cv2.pyrDown(grouped_disp)
 
