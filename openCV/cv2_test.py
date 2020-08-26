@@ -7,11 +7,11 @@ from matplotlib import pyplot as plt
 from pdf2image import convert_from_path
 
 class Box:
-    def __init__(self, startX, startY, endX, endY):
-        self.startX = startX
-        self.startY = startY
-        self.endX = endX
-        self.endY = endY
+    def __init__(self, startX, startY, width, height):
+        self.x = startX
+        self.y = startY
+        self.width = width
+        self.height = height
 
 #CONVERTING PDF TO IMAGE
 #pages = convert_from_path('NZBC-G4#3.4.pdf', 500)
@@ -26,7 +26,7 @@ threshold = 200
 cDistance = 55
 
 #read page, convert to grayscale and initial threshold
-page = cv2.imread('page14.jpg')
+page = cv2.imread('page18.jpg')
 page_gray = cv2.cvtColor(page, cv2.COLOR_BGR2GRAY)
 ret, page_thresh = cv2.threshold(page_gray, threshold, 255, cv2.THRESH_BINARY)
 
@@ -86,7 +86,9 @@ while len(contours) > 1:
 
     #create new boundingBox
     cv2.rectangle(grouped_disp, (xStart,yStart),(xEnd,yEnd),(0,0,255),2)
-    newBox = Box(xStart, yStart, xEnd, yEnd)
+    width = xEnd - xStart
+    height = yEnd - yStart
+    newBox = Box(xStart, yStart, width, height)
     boxes1.append(newBox)
     
     #remove contours inside element box from list
@@ -98,6 +100,165 @@ while len(contours) > 1:
             del contours[i]
 
 print("NO. IDENTIFIED ELEMENTS: "+str(len(boxes1)))
+
+#load in templates
+commentT = []
+listT = []
+paragraphT = []
+subsectionT = []
+topicT = []
+for i in range(5):
+    commentString = 'Element-Templates/comment'+str(i+1)+'.jpg'
+    listString = 'Element-Templates/list'+str(i+1)+'.jpg'
+    paragraphString = 'Element-Templates/paragraph'+str(i+1)+'.jpg'
+    subsectionString = 'Element-Templates/subsection'+str(i+1)+'.jpg'
+    topicString = 'Element-Templates/topic'+str(i+1)+'.jpg'
+    commentT.append(cv2.imread(commentString, cv2.IMREAD_GRAYSCALE))
+    listT.append(cv2.imread(listString, cv2.IMREAD_GRAYSCALE))
+    paragraphT.append(cv2.imread(paragraphString, cv2.IMREAD_GRAYSCALE))
+    subsectionT.append(cv2.imread(subsectionString, cv2.IMREAD_GRAYSCALE))
+    topicT.append(cv2.imread(topicString, cv2.IMREAD_GRAYSCALE))
+
+#calculate similarity between each element and various templates to find
+#closest match
+for box in boxes1:
+    element = page[box.y:box.y+box.height, box.x:box.x+box.width]
+    element = cv2.cvtColor(element, cv2.COLOR_BGR2GRAY)
+
+    commentCheck = 0
+    listCheck = 0
+    paragraphCheck = 0
+    subsectionCheck = 0
+    topicCheck = 0
+    highSim = 0
+    high = ''
+
+    #COMMENT SIMILARITY
+    for i in range(len(commentT)):
+        commentImg = commentT[i]
+
+        height,width = element.shape
+        cHeight,cWidth = commentImg.shape
+
+        if height < cHeight:
+            height = cHeight
+        if width < cWidth:
+            width = cWidth
+
+        bufferE = np.ones([height, width], np.uint8)
+        bufferE[0:len(element), 0:len(element[0])] = element
+
+        result = cv2.matchTemplate(bufferE, commentImg, cv2.TM_CCOEFF_NORMED)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+
+        commentCheck += max_val
+
+    commentCheck = commentCheck/len(commentT)
+    highSim = commentCheck
+    high = 'comment'
+
+    #LIST SIMILARITY
+    for i in range(len(listT)):
+        listImg = listT[i]
+        
+        height,width = element.shape
+        cHeight,cWidth = listImg.shape
+
+        if height < cHeight:
+            height = cHeight
+        if width < cWidth:
+            width = cWidth
+
+        bufferE = np.ones([height, width], np.uint8)
+        bufferE[0:len(element), 0:len(element[0])] = element
+
+        result = cv2.matchTemplate(bufferE, listImg, cv2.TM_CCOEFF_NORMED)   
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+        
+        listCheck += max_val
+
+    listCheck = listCheck/len(listT)
+    if (listCheck > highSim):
+        highSim = listCheck
+        high = 'list'
+
+    #PARAGRAPH SIMILARITY
+    for i in range(len(paragraphT)):
+        paragraphImg = paragraphT[i]
+
+        height,width = element.shape
+        cHeight,cWidth = paragraphImg.shape
+
+        if height < cHeight:
+            height = cHeight
+        if width < cWidth:
+            width = cWidth
+
+        bufferE = np.ones([height, width], np.uint8)
+        bufferE[0:len(element), 0:len(element[0])] = element
+
+        result = cv2.matchTemplate(bufferE, paragraphImg, cv2.TM_CCOEFF_NORMED)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+        
+        paragraphCheck += max_val
+
+    paragraphCheck = paragraphCheck/len(paragraphT)
+    if (paragraphCheck > highSim):
+        highSim = paragraphCheck
+        high = 'paragraph'
+
+    #SUBSECTION SIMILARITY
+    for i in range(len(subsectionT)):
+        subsectionImg = subsectionT[i]
+
+        height,width = element.shape
+        cHeight,cWidth = subsectionImg.shape
+
+        if height < cHeight:
+            height = cHeight
+        if width < cWidth:
+            width = cWidth
+
+        bufferE = np.ones([height, width], np.uint8)
+        bufferE[0:len(element), 0:len(element[0])] = element
+
+        result = cv2.matchTemplate(bufferE, subsectionImg, cv2.TM_CCOEFF_NORMED)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+        
+        subsectionCheck += max_val
+
+    subsectionCheck = subsectionCheck/len(subsectionT)
+    #if (subsectionCheck > highSim):
+    #    highSim = subsectionCheck
+    #    high = 'subsection'
+
+    #TOPIC SIMILARITY
+    for i in range(len(topicT)):
+        topicImg = topicT[i]
+
+        height,width = element.shape
+        cHeight,cWidth = topicImg.shape
+
+        if height < cHeight:
+            height = cHeight
+        if width < cWidth:
+            width = cWidth
+
+        bufferE = np.ones([height, width], np.uint8)
+        bufferE[0:len(element), 0:len(element[0])] = element
+
+        result = cv2.matchTemplate(bufferE, topicImg, cv2.TM_CCOEFF_NORMED)   
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+
+        topicCheck += max_val
+
+    topicCheck = topicCheck/len(topicT)
+    #if (topicCheck > highSim):
+    #    highSim = topicCheck
+    #    high = 'topic'
+
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    cv2.putText(grouped_disp, high, (box.x,box.y), font,2,(0,0,255),2,cv2.LINE_AA)
 
 #image is 4134x5847 scale down
 for i in range(3):
