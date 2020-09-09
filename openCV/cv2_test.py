@@ -1,6 +1,7 @@
 #Grouping of contours for classification:
 #to close opened windows, focus on any window and press ESC (or manually 'x' out of each one)
 
+import math
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
@@ -100,6 +101,14 @@ while len(contours) > 1:
             del contours[i]
 
 print("NO. IDENTIFIED ELEMENTS: "+str(len(boxes1)))
+
+#extraction of templates from existing pages
+#box = boxes1[18]
+#createTemp = page[box.y:box.y+box.height, box.x:box.x+box.width]
+#saveTemp = createTemp[0:60, 0:500]
+#cv2.imshow('element', createTemp)
+#cv2.imshow('template', saveTemp)
+#cv2.imwrite('subsection5.jpg', saveTemp)
 
 #load in templates
 commentT = []
@@ -219,6 +228,11 @@ for box in boxes1:
         if width < cWidth:
             width = cWidth
 
+        #bypass if element is particularly large as it is unlikely to be
+        #a subsection title
+        if height > cHeight*3:
+            continue
+
         bufferE = np.ones([height, width], np.uint8)
         bufferE[0:len(element), 0:len(element[0])] = element
 
@@ -228,9 +242,9 @@ for box in boxes1:
         subsectionCheck += max_val
 
     subsectionCheck = subsectionCheck/len(subsectionT)
-    #if (subsectionCheck > highSim):
-    #    highSim = subsectionCheck
-    #    high = 'subsection'
+    if (subsectionCheck > highSim):
+        highSim = subsectionCheck
+        high = 'sub'
 
     #TOPIC SIMILARITY
     for i in range(len(topicT)):
@@ -253,22 +267,67 @@ for box in boxes1:
         topicCheck += max_val
 
     topicCheck = topicCheck/len(topicT)
-    #if (topicCheck > highSim):
-    #    highSim = topicCheck
-    #    high = 'topic'
+    if (topicCheck > highSim):
+        highSim = topicCheck
+        high = 'topic'
 
     font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(grouped_disp, high, (box.x,box.y), font,2,(0,0,255),2,cv2.LINE_AA)
+    #cv2.putText(grouped_disp, high, (box.x,box.y), font,2,(0,0,255),2,cv2.LINE_AA)
+
+#determining order of elements on the page
+lowX = 5000
+highX = 0
+highY = 0
+for i in range(len(boxes1)):
+    if boxes1[i].x < lowX:
+        lowX = boxes1[i].x
+    if boxes1[i].x > highX:
+        highX = boxes1[i].x
+
+for i in range(len(boxes1)):
+    if x < lowX+500:
+        if boxes1[i].y > highY:
+            highY = boxes1[i].y
+
+for j in range(len(boxes1)):
+    lowIndex = j
+    lowY = 6000
+    xList = []
+    
+    for i in range(j, len(boxes1)):
+        x = boxes1[i].x
+        y = boxes1[i].y
+
+        if x < lowX+500:
+            if y < lowY:
+                lowY = y
+                lowIndex = i
+
+        if i == len(boxes1)-1:
+            if lowY == highY:
+                lowX = highX
+        
+    temp = boxes1[j]
+    boxes1[j] = boxes1[lowIndex]
+    boxes1[lowIndex] = temp
+
+#print order numbers next to element boxes
+for i in range(len(boxes1)):
+    x = boxes1[i].x
+    y = boxes1[i].y
+    elementNum = str(i)
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    cv2.putText(grouped_disp, elementNum, (x,y), font,2,(0,0,255),2,cv2.LINE_AA)
 
 #image is 4134x5847 scale down
 for i in range(3):
     #thresh_disp = cv2.pyrDown(thresh_disp)
-    contour_disp = cv2.pyrDown(contour_disp)
+    #contour_disp = cv2.pyrDown(contour_disp)
     grouped_disp = cv2.pyrDown(grouped_disp)
 
 #cv2.imshow('page', page_disp)   
 #cv2.imshow('thresholded', thresh_disp)
-cv2.imshow('contoured', contour_disp)
+#cv2.imshow('contoured', contour_disp)
 cv2.imshow('grouped', grouped_disp)
 
 cv2.waitKey(0)
