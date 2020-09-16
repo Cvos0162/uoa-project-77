@@ -7,12 +7,17 @@ import numpy as np
 from matplotlib import pyplot as plt
 from pdf2image import convert_from_path
 
+import pytesseract
+
+
 class Box:
     def __init__(self, startX, startY, width, height):
         self.x = startX
         self.y = startY
         self.width = width
         self.height = height
+        self.type = "unclassified"
+        self.content = ""
 
 #CONVERTING PDF TO IMAGE
 #pages = convert_from_path('NZBC-G4#3.4.pdf', 500)
@@ -85,8 +90,8 @@ while len(contours) > 1:
     wGroup = xEnd - xStart
     hGroup = yEnd - yStart
 
-    #create new boundingBox
-    cv2.rectangle(grouped_disp, (xStart,yStart),(xEnd,yEnd),(0,0,255),2)
+    #create new boundingBox for element then add element to 'boxes1' list
+    #cv2.rectangle(grouped_disp, (xStart,yStart),(xEnd,yEnd),(0,0,255),2) (LINE FOR DEBUG)
     width = xEnd - xStart
     height = yEnd - yStart
     newBox = Box(xStart, yStart, width, height)
@@ -110,6 +115,51 @@ print("NO. IDENTIFIED ELEMENTS: "+str(len(boxes1)))
 #cv2.imshow('template', saveTemp)
 #cv2.imwrite('subsection5.jpg', saveTemp)
 
+
+#DETERMINING ELEMENT ORDER
+lowX = 5000
+highX = 0
+highY = 0
+#lowest and highest x value of elements
+for i in range(len(boxes1)):
+    if boxes1[i].x < lowX:
+        lowX = boxes1[i].x
+    if boxes1[i].x > highX:
+        highX = boxes1[i].x
+
+#highest y value of the left column (500 px threshold for associating with
+#left column)
+for i in range(len(boxes1)):
+    if x < lowX+500:
+        if boxes1[i].y > highY:
+            highY = boxes1[i].y
+
+#find appropriate element for 1st box then second etc. until end of first
+#column is reached (highY) then do the same for the second column
+for j in range(len(boxes1)):
+    lowIndex = j
+    lowY = 6000
+    xList = []
+    
+    for i in range(j, len(boxes1)):
+        x = boxes1[i].x
+        y = boxes1[i].y
+
+        if x < lowX+500:
+            if y < lowY:
+                lowY = y
+                lowIndex = i
+
+        if i == len(boxes1)-1:
+            if lowY == highY:
+                lowX = highX
+        
+    temp = boxes1[j]
+    boxes1[j] = boxes1[lowIndex]
+    boxes1[lowIndex] = temp
+    
+
+#PERFORM TEMPLATE MATCHING; for classifying elements
 #load in templates
 commentT = []
 listT = []
@@ -271,58 +321,137 @@ for box in boxes1:
         highSim = topicCheck
         high = 'topic'
 
-    font = cv2.FONT_HERSHEY_SIMPLEX
-    #cv2.putText(grouped_disp, high, (box.x,box.y), font,2,(0,0,255),2,cv2.LINE_AA)
+    box.type = high
 
-#determining order of elements on the page
-lowX = 5000
-highX = 0
-highY = 0
-for i in range(len(boxes1)):
-    if boxes1[i].x < lowX:
-        lowX = boxes1[i].x
-    if boxes1[i].x > highX:
-        highX = boxes1[i].x
 
-for i in range(len(boxes1)):
-    if x < lowX+500:
-        if boxes1[i].y > highY:
-            highY = boxes1[i].y
+#grouping of subsection + topic elements considered to be on the same line in the same
+#column (specific to the NZ building code documents)
+#extract text check for any paragraph/list elements which do NOT contain numbers
+#i.e. 1.4.1, 2.3.1, a), c) and group with previous element for para/list
+#don't perform these checks for first element (i==0)
+i = 0
+img = cv2.cvtColor(page, cv2.COLOR_BGR2RGB) #pytesseract works with RGB
+while i < len(boxes1):  
+    x = boxes1[i].x
+    y = boxes1[i].y
+    width = boxes1[i].width
+    height = boxes1[i].height
+    boxType = boxes1[i].type
 
-for j in range(len(boxes1)):
-    lowIndex = j
-    lowY = 6000
-    xList = []
+    #ignore header/footer elements
+    if y < 543 or y > 4880:
+        i += 1
+        continue
     
-    for i in range(j, len(boxes1)):
-        x = boxes1[i].x
-        y = boxes1[i].y
+    if i > 0:
+        combineST = False
+        group = False
 
-        if x < lowX+500:
-            if y < lowY:
-                lowY = y
-                lowIndex = i
+        #check if current and previous type where both sub/topics
+        if boxType == "sub" or boxType == "topic" and \
+            boxType == "sub" or boxType == "topic":
+                combineST = True
 
-        if i == len(boxes1)-1:
-            if lowY == highY:
-                lowX = highX
-        
-    temp = boxes1[j]
-    boxes1[j] = boxes1[lowIndex]
-    boxes1[lowIndex] = temp
+        if combineST:
+            if boxes1[i].y < boxes1[i-1].y+50 and boxes1[i].y > boxes1[i-1].y-50:
+                boxType = "sub"
+                group = True
 
-#print order numbers next to element boxes
+        #if type is paragraph but does not contain number value i.e 1.3.2 then group with previous element
+        #if type is list but does not contain list value i.e a), b), i), ii), iii) then group with previous element
+        elif boxType == "paragraph" or boxType == "list":
+            elementImg = img[y:y+height, x:x+width]
+            elementString = pytesseract.image_to_string(elementImg)
+            elementString = elementString.replace('\n', ' ')
+            
+            if boxType == "paragraph":
+                if not ((ord(elementString[0]) > 47 and ord(elementString[0]) < 58) and elementString[1] == '.' and \
+                (ord(elementString[2]) > 47 and ord(elementString[2]) < 58) and elementString[3] == '.' and \
+                (ord(elementString[4]) > 47 and ord(elementString[4]) < 58)):
+                    group = True
+            elif boxType == "list":
+                if not (elementString[1] == ')' or elementString[2] == ')' or elementString[3] == ')'):
+                    group = True
+
+        if group:
+            x = min(boxes1[i].x, boxes1[i-1].x)
+            y = min(boxes1[i].y, boxes1[i-1].y)
+
+            #new width must take gap between elements into account
+            xGap = 0
+            yGap = 0
+            if boxes1[i].x < boxes1[i-1].x:
+                xGap = boxes1[i-1].x - (boxes1[i].x + boxes1[i].width)
+            else:
+                 xGap = boxes1[i].x - (boxes1[i-1].x + boxes1[i-1].width)  
+            if boxes1[i].y < boxes1[i-1].y:
+                yGap = boxes1[i-1].y - (boxes1[i].y + boxes1[i].height)
+            else:
+                yGap = boxes1[i].y - (boxes1[i-1].y + boxes1[i-1].height)
+
+            if boxType == "sub":
+                width = boxes1[i].width + xGap + boxes1[i-1].width
+                height = max(boxes1[i].height, boxes1[i-1].height)
+            else:
+                width = max(boxes1[i].width, boxes1[i-1].width)
+                height = boxes1[i].height + yGap + boxes1[i-1].height
+                boxType = boxes1[i-1].type
+
+            boxes1[i-1].x = x
+            boxes1[i-1].y = y
+            boxes1[i-1].width = width
+            boxes1[i-1].height = height
+
+            del boxes1[i]
+            i -= 1
+
+    boxes1[i].type = boxType
+    i += 1
+
+
+#run through final boxes list; check subsections for number value (e.g 1.2, 1.3) reclassify as topic for subsections
+#that do not have this
 for i in range(len(boxes1)):
     x = boxes1[i].x
     y = boxes1[i].y
-    elementNum = str(i)
+    width = boxes1[i].width
+    height = boxes1[i].height
+    boxType = boxes1[i].type
+
+    #ignore header/footer elements
+    if y < 543 or y > 4880:
+        i += 1
+        continue
+
+    elementImg = img[y:y+height, x:x+width]
+    elementString = pytesseract.image_to_string(elementImg)
+    elementString = elementString.replace('\n', ' ')
+
+    #check for initial number for subsection i.e. 1.1, 2.3, if not present reclassify as
+    #topic
+    if boxType == "sub":
+        if not ((ord(elementString[0]) > 47 and ord(elementString[0]) < 58) and elementString[1] == '.' and \
+        (ord(elementString[2]) > 47 and ord(elementString[2]) < 58)):
+            boxType = "topic"
+
+    boxes1[i].type = boxType
+
+    print("#####"+boxType.upper()+"#####")
+    print(elementString)
+    print("-----------------------")
+    
     font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(grouped_disp, elementNum, (x,y), font,2,(0,0,255),2,cv2.LINE_AA)
+    cv2.putText(grouped_disp, boxType, (x,y), font,2,(0,0,255),2,cv2.LINE_AA)
+    cv2.rectangle(grouped_disp, (x,y),(x+width,y+height),(0,0,255),2)
+
 
 #image is 4134x5847 scale down
 for i in range(3):
     #thresh_disp = cv2.pyrDown(thresh_disp)
     #contour_disp = cv2.pyrDown(contour_disp)
+    #if (i == 2):
+    #    cv2.imshow('groupedBig', grouped_disp)
+
     grouped_disp = cv2.pyrDown(grouped_disp)
 
 #cv2.imshow('page', page_disp)   
