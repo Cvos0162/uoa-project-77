@@ -1,5 +1,5 @@
-#Grouping of contours for classification:
-#to close opened windows, focus on any window and press ESC (or manually 'x' out of each one)
+import xml.etree.ElementTree as xml
+import xml.dom.minidom as minidom
 
 import math
 import cv2
@@ -342,6 +342,12 @@ while i < len(boxes1):
     if y < 543 or y > 4880:
         i += 1
         continue
+
+    elementImg = img[y:y+height, x:x+width]
+    elementString = pytesseract.image_to_string(elementImg)
+    elementString = elementString.replace('\n', ' ')
+
+    boxes1[i].content = elementString
     
     if i > 0:
         combineST = False
@@ -359,11 +365,7 @@ while i < len(boxes1):
 
         #if type is paragraph but does not contain number value i.e 1.3.2 then group with previous element
         #if type is list but does not contain list value i.e a), b), i), ii), iii) then group with previous element
-        elif boxType == "paragraph" or boxType == "list":
-            elementImg = img[y:y+height, x:x+width]
-            elementString = pytesseract.image_to_string(elementImg)
-            elementString = elementString.replace('\n', ' ')
-            
+        elif boxType == "paragraph" or boxType == "list":         
             if boxType == "paragraph":
                 if not ((ord(elementString[0]) > 47 and ord(elementString[0]) < 58) and elementString[1] == '.' and \
                 (ord(elementString[2]) > 47 and ord(elementString[2]) < 58) and elementString[3] == '.' and \
@@ -402,30 +404,45 @@ while i < len(boxes1):
             boxes1[i-1].width = width
             boxes1[i-1].height = height
 
+            #sub section boxes prior to grouping are too small for tesseract to get text
+            #successfully, extracting text from combined boxes again ensures text is correctly
+            #found
+            elementImg = img[y:y+height, x:x+width]
+            elementString = pytesseract.image_to_string(elementImg)
+            elementString = elementString.replace('\n', ' ')
+            
+            boxes1[i-1].content = elementString
+
             del boxes1[i]
             i -= 1
-
+            
     boxes1[i].type = boxType
     i += 1
-
+    
 
 #run through final boxes list; check subsections for number value (e.g 1.2, 1.3) reclassify as topic for subsections
-#that do not have this
+#that do not have this then produce XML(legalDocML)
+root = xml.Element("document")
+newParagraph = True
+
+#default elements incase for example list occurs before paragraph occurs (should be impossible)
+subsection = xml.SubElement(root, "subsection")
+paragraph = xml.SubElement(subsection, "paragraph")
+subsection.set("key", "default")
+paragraph.set("key", "default")
+
 for i in range(len(boxes1)):
     x = boxes1[i].x
     y = boxes1[i].y
     width = boxes1[i].width
     height = boxes1[i].height
     boxType = boxes1[i].type
+    elementString = boxes1[i].content
 
     #ignore header/footer elements
     if y < 543 or y > 4880:
         i += 1
         continue
-
-    elementImg = img[y:y+height, x:x+width]
-    elementString = pytesseract.image_to_string(elementImg)
-    elementString = elementString.replace('\n', ' ')
 
     #check for initial number for subsection i.e. 1.1, 2.3, if not present reclassify as
     #topic
@@ -436,13 +453,85 @@ for i in range(len(boxes1)):
 
     boxes1[i].type = boxType
 
-    print("#####"+boxType.upper()+"#####")
-    print(elementString)
+    print("#####"+boxes1[i].type.upper()+"#####")
+    print(boxes1[i].content)
     print("-----------------------")
-    
+
+    #logic for writing the box content into appropriate XML(legalDocML) format
+    if boxType == "sub":
+        subsection = xml.SubElement(root, "subsection")
+        subsection.set("key", elementString[0:3])
+
+        #finding starting point of title (ignoring dashes/spaces etc.)
+        for i in range(len(elementString)):
+            if ord(elementString[i]) >= 65:
+                startIndex = i
+                break
+            
+        subsection.set("title", elementString[startIndex:len(elementString)])
+        root.append(subsection)
+    elif boxType == "topic":
+        topic = xml.SubElement(subsection, "topic")
+        topic.text = elementString
+    elif boxType == "paragraph":
+        paragraph = xml.SubElement(subsection, "paragraph")
+        paragraph.set("key", elementString[0:5])
+        p = xml.SubElement(paragraph, "p")
+
+        #finding starting point of paragraph text (ignoring dashes/spaces etc.)
+        for i in range(len(elementString)):
+            if ord(elementString[i]) >= 65:
+                startIndex = i
+                break
+                      
+        p.text = elementString[startIndex:len(elementString)]
+        newParagraph = True
+    elif boxType == "comment":
+        comment = xml.SubElement(paragraph, "commentary")
+
+        #finding ending point of comment title (usually "COMMENT")
+        for i in range(len(elementString)):
+            if ord(elementString[i]) < 65:
+                endIndex = i
+                break
+
+        #finding start of comment after title
+        for i in range(endIndex, len(elementString)):
+            if ord(elementString[i]) < 65:
+                startIndex = i
+                break
+        
+        comment.set("title", elementString[0:endIndex])
+        comment.text = elementString[startIndex:len(elementString)]
+    elif boxType == "list":
+        if newParagraph:
+            ol = xml.SubElement(paragraph, "ol")
+            newParagraph = False
+
+        li = xml.SubElement(ol, "li")
+        li.set("key", paragraph.get("key")+"."+elementString[0])
+
+        #finding list content after list 'title' (such as a), b), c) etc.)
+        for i in range(2, len(elementString)):
+            if ord(elementString[i]) < 65:
+                startIndex = i
+                break
+        
+        li.text = elementString[startIndex:len(elementString)]
+        
     font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.putText(grouped_disp, boxType, (x,y), font,2,(0,0,255),2,cv2.LINE_AA)
     cv2.rectangle(grouped_disp, (x,y),(x+width,y+height),(0,0,255),2)
+
+
+#Get XML data into elementTree and write to file
+roughString = xml.tostring(root, 'utf-8')
+reparsed = minidom.parseString(roughString)
+prettyString = reparsed.toprettyxml(encoding='utf-8')
+
+file = open("output.xml", "wb")
+file.write(prettyString)
+file.close()
 
 
 #image is 4134x5847 scale down
