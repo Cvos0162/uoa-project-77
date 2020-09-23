@@ -469,7 +469,6 @@ for i in range(len(boxes1)):
                 break
             
         subsection.set("title", elementString[startIndex:len(elementString)])
-        root.append(subsection)
     elif boxType == "topic":
         topic = xml.SubElement(subsection, "topic")
         topic.text = elementString
