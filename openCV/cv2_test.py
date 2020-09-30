@@ -32,7 +32,7 @@ threshold = 200
 cDistance = 55
 
 #read page, convert to grayscale and initial threshold
-page = cv2.imread('page18.jpg')
+page = cv2.imread('page19.jpg')
 page_gray = cv2.cvtColor(page, cv2.COLOR_BGR2GRAY)
 ret, page_thresh = cv2.threshold(page_gray, threshold, 255, cv2.THRESH_BINARY)
 
@@ -118,6 +118,7 @@ print("NO. IDENTIFIED ELEMENTS: "+str(len(boxes1)))
 
 #DETERMINING ELEMENT ORDER
 lowX = 5000
+lowY = 5000
 highX = 0
 highY = 0
 #lowest and highest x value of elements
@@ -126,11 +127,13 @@ for i in range(len(boxes1)):
         lowX = boxes1[i].x
     if boxes1[i].x > highX:
         highX = boxes1[i].x
+    if boxes1[i].y < lowY:
+        lowY = boxes1[i].y
 
 #highest y value of the left column (500 px threshold for associating with
 #left column)
 for i in range(len(boxes1)):
-    if x < lowX+500:
+    if x < lowX+750:
         if boxes1[i].y > highY:
             highY = boxes1[i].y
 
@@ -138,20 +141,20 @@ for i in range(len(boxes1)):
 #column is reached (highY) then do the same for the second column
 for j in range(len(boxes1)):
     lowIndex = j
-    lowY = 6000
+    currentY = 6000
     xList = []
     
     for i in range(j, len(boxes1)):
         x = boxes1[i].x
         y = boxes1[i].y
 
-        if x < lowX+500:
-            if y < lowY:
-                lowY = y
+        if x < lowX+750:
+            if y < currentY:
+                currentY = y
                 lowIndex = i
 
         if i == len(boxes1)-1:
-            if lowY == highY:
+            if currentY == highY:
                 lowX = highX
         
     temp = boxes1[j]
@@ -321,7 +324,19 @@ for box in boxes1:
         highSim = topicCheck
         high = 'topic'
 
-    box.type = high
+    #font = cv2.FONT_HERSHEY_SIMPLEX
+    #cv2.rectangle(grouped_disp, (box.x,box.y),(box.x+box.width,box.y+box.height),(0,0,255),2)
+
+    if box.y > lowY-25 and box.y < lowY+25:
+        print("HEADER: "+str(high)+", "+str(highSim))
+        #cv2.putText(grouped_disp, "H", (box.x,box.y), font,2,(0,0,255),2,cv2.LINE_AA)
+    elif box.y > highY-25 and box.y < highY+25:
+        print("FOOTER: "+str(high)+", "+str(highSim))
+        #cv2.putText(grouped_disp, "F", (box.x,box.y), font,2,(0,0,255),2,cv2.LINE_AA)
+    else:
+        print("OK: "+str(high)+", "+str(highSim))
+        box.type = high
+        #cv2.putText(grouped_disp, high, (box.x,box.y), font,2,(0,0,255),2,cv2.LINE_AA)
 
 
 #grouping of subsection + topic elements considered to be on the same line in the same
@@ -337,43 +352,92 @@ while i < len(boxes1):
     width = boxes1[i].width
     height = boxes1[i].height
     boxType = boxes1[i].type
+    prevType = boxes1[i-1].type
 
-    #ignore header/footer elements
-    if y < 543 or y > 4880:
+    #ignore header/footer and page numbers
+    if boxType == "unclassified":
         i += 1
         continue
 
-    elementImg = img[y:y+height, x:x+width]
+    #for particularly small elements text may not be picked up to avoid this create buffer
+    #around edge of element for OCR (note: the buffer must be smaller than the contouring
+    #threshold used to avoid picking up other elements text(20 px here smaller than 55 px
+    #used for contouring)
+    yStart = 0
+    yEnd = 0
+    xStart = 0
+    xEnd = 0
+    if y-20 > 0:
+        yStart = y-20
+    else:
+        yStart = 0
+    if (y+20+height) < pageHeight:
+        yEnd = y+20+height
+    else:
+        yEnd = pageHeight
+    if x-20 > 0:
+        xStart = x-20
+    else:
+        xStart = 0
+    if (x+20+width) < pageWidth:
+        xEnd = x+20+width
+    else:
+        xEnd = pageWidth
+    
+    elementImg = img[yStart:yEnd, xStart:xEnd]
     elementString = pytesseract.image_to_string(elementImg)
     elementString = elementString.replace('\n', ' ')
-
     boxes1[i].content = elementString
     
+    #if len(elementString) < 1:
+    #    boxType = "unclassified"
+    #    boxes1[i].type = "unclassified"
+
+    #this code could likely be removed with a more extensive set of templates, due to misclassification
+    #of paragraphs as lists and lists and topics, this catches this by checking for the list/paragraph
+    #indicators
+    if len(elementString) >= 4:
+        if (elementString[1] == ')' or elementString[2] == ')' or elementString[3] == ')'):
+            boxType = "list"
+            boxes1[i].type = "list"
+    if len(elementString) >= 5:
+        if (ord(elementString[0]) > 47 and ord(elementString[0]) < 58) and elementString[1] == '.' and \
+            (ord(elementString[2]) > 47 and ord(elementString[2]) < 58) and elementString[3] == '.' and \
+            (ord(elementString[4]) > 47 and ord(elementString[4]) < 58):
+                boxType = "paragraph"
+                boxes1[i].type = "paragraph"
+    
     if i > 0:
-        combineST = False
         group = False
 
-        #check if current and previous type where both sub/topics
+        #check if current and previous type where both sub/topics, reallocate to sub and
+        #set flag for grouping
         if boxType == "sub" or boxType == "topic" and \
-            boxType == "sub" or boxType == "topic":
-                combineST = True
-
-        if combineST:
-            if boxes1[i].y < boxes1[i-1].y+50 and boxes1[i].y > boxes1[i-1].y-50:
-                boxType = "sub"
-                group = True
-
+            prevType == "sub" or prevType == "topic":
+                if boxes1[i].y < boxes1[i-1].y+50 and boxes1[i].y > boxes1[i-1].y-50:
+                    boxType = "sub"
+                    group = True
+        elif boxType == "list" or boxType == "paragraph" and \
+             prevType == "list" or prevType == "paragraph":
+                if boxes1[i].y < boxes1[i-1].y+50 and boxes1[i].y > boxes1[i-1].y-50:
+                    group = True
+                    
         #if type is paragraph but does not contain number value i.e 1.3.2 then group with previous element
         #if type is list but does not contain list value i.e a), b), i), ii), iii) then group with previous element
-        elif boxType == "paragraph" or boxType == "list":         
+        #additional check to ensure sublists are not being grouped with lists (grouping in y therefore x-values
+        #must be similar)
+        if len(elementString) >= 5 and group == False:
             if boxType == "paragraph":
                 if not ((ord(elementString[0]) > 47 and ord(elementString[0]) < 58) and elementString[1] == '.' and \
                 (ord(elementString[2]) > 47 and ord(elementString[2]) < 58) and elementString[3] == '.' and \
                 (ord(elementString[4]) > 47 and ord(elementString[4]) < 58)):
-                    group = True
+                    if boxes1[i].x > boxes1[i-1].x-20 and boxes1[i].x < boxes1[i-1].x+20:
+                        group = True
+                        
             elif boxType == "list":
                 if not (elementString[1] == ')' or elementString[2] == ')' or elementString[3] == ')'):
-                    group = True
+                    if boxes1[i].x > boxes1[i-1].x-20 and boxes1[i].x < boxes1[i-1].x+20:
+                        group = True
 
         if group:
             x = min(boxes1[i].x, boxes1[i-1].x)
@@ -391,23 +455,24 @@ while i < len(boxes1):
             else:
                 yGap = boxes1[i].y - (boxes1[i-1].y + boxes1[i-1].height)
 
-            if boxType == "sub":
+            if xGap > 0:
                 width = boxes1[i].width + xGap + boxes1[i-1].width
-                height = max(boxes1[i].height, boxes1[i-1].height)
             else:
                 width = max(boxes1[i].width, boxes1[i-1].width)
+            if yGap > 0:
                 height = boxes1[i].height + yGap + boxes1[i-1].height
-                boxType = boxes1[i-1].type
+            else:
+                height = max(boxes1[i].height, boxes1[i-1].height)
+                
+            boxType = boxes1[i-1].type
 
             boxes1[i-1].x = x
             boxes1[i-1].y = y
             boxes1[i-1].width = width
             boxes1[i-1].height = height
 
-            #sub section boxes prior to grouping are too small for tesseract to get text
-            #successfully, extracting text from combined boxes again ensures text is correctly
-            #found
-            elementImg = img[y:y+height, x:x+width]
+            #extract text from combined boxes to get correct element text
+            elementImg = img[(y-20):(y+20)+height, (x-20):(x+20)+width]
             elementString = pytesseract.image_to_string(elementImg)
             elementString = elementString.replace('\n', ' ')
             
@@ -424,12 +489,17 @@ while i < len(boxes1):
 #that do not have this then produce XML(legalDocML)
 root = xml.Element("document")
 newParagraph = True
+newList = True
+indented = False
+parentListX = 0
 
 #default elements incase for example list occurs before paragraph occurs (should be impossible)
 subsection = xml.SubElement(root, "subsection")
 paragraph = xml.SubElement(subsection, "paragraph")
+li = xml.SubElement(paragraph, "li")
 subsection.set("key", "default")
 paragraph.set("key", "default")
+li.set("key", "default")
 
 for i in range(len(boxes1)):
     x = boxes1[i].x
@@ -439,19 +509,60 @@ for i in range(len(boxes1)):
     boxType = boxes1[i].type
     elementString = boxes1[i].content
 
-    #ignore header/footer elements
-    if y < 543 or y > 4880:
+    if len(elementString) < 1:
+        boxType = "unclassified"
+        boxes1[i].type = "unclassified"
+
+    #ignore header/footer and page numbers
+    if boxType == "unclassified":
         i += 1
         continue
 
     #check for initial number for subsection i.e. 1.1, 2.3, if not present reclassify as
-    #topic
-    if boxType == "sub":
+    #topic and vice-versa
+	#Running on a laptop this additional code was needed before checking the ords below, 
+	#due to tesseract outputting empty strings for smaller elements, additionally random FF 
+	#(form-feed characters were present and are removed in the below line)
+	#elementString = elementString.replace('\f', '')
+	#if len(elementString) > 1:
+	#	...(ord code)
+	#else:
+	#	boxType = "topic"
+    if boxType == "sub" and len(elementString) >= 3:
         if not ((ord(elementString[0]) > 47 and ord(elementString[0]) < 58) and elementString[1] == '.' and \
         (ord(elementString[2]) > 47 and ord(elementString[2]) < 58)):
             boxType = "topic"
+    elif boxType == "topic" and len(elementString) >= 3:
+        if (ord(elementString[0]) > 47 and ord(elementString[0]) < 58) and elementString[1] == '.' and \
+        (ord(elementString[2]) > 47 and ord(elementString[2]) < 58):
+            boxType = "sub"
+
+    #reclassifying indented list elements as sublist
+    if boxType == "list":
+        if boxes1[i-1].type == "list":
+            if boxes1[i].x > boxes1[i-1].x+50:
+                boxType = "sublist"
+                parentListX = boxes1[i-1].x
+                indented = True
+        if indented == True and boxes1[i].x > parentListX+50:
+            boxType = "sublist"
+        else:
+            indented = False    
 
     boxes1[i].type = boxType
+
+    if len(elementString) < 1:
+        boxType = "unclassified"
+        boxes1[i].type = "unclassified"
+
+    #ignore header/footer and page numbers
+    if boxType == "unclassified":
+        i += 1
+        continue
+
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    cv2.putText(grouped_disp, boxType, (x,y), font,2,(0,0,255),2,cv2.LINE_AA)
+    cv2.rectangle(grouped_disp, (x,y),(x+width,y+height),(0,0,255),2)
 
     print("#####"+boxes1[i].type.upper()+"#####")
     print(boxes1[i].content)
@@ -486,7 +597,10 @@ for i in range(len(boxes1)):
         p.text = elementString[startIndex:len(elementString)]
         newParagraph = True
     elif boxType == "comment":
-        comment = xml.SubElement(paragraph, "commentary")
+        if indented == True:
+            comment = xml.SubElement(subOl, "commentary")
+        else:
+            comment = xml.SubElement(paragraph, "commentary")
 
         #finding ending point of comment title (usually "COMMENT")
         for i in range(len(elementString)):
@@ -510,6 +624,8 @@ for i in range(len(boxes1)):
         li = xml.SubElement(ol, "li")
         li.set("key", paragraph.get("key")+"."+elementString[0])
 
+        newList = True
+
         #finding list content after list 'title' (such as a), b), c) etc.)
         for i in range(2, len(elementString)):
             if ord(elementString[i]) < 65:
@@ -517,10 +633,28 @@ for i in range(len(boxes1)):
                 break
         
         li.text = elementString[startIndex:len(elementString)]
-        
-    font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(grouped_disp, boxType, (x,y), font,2,(0,0,255),2,cv2.LINE_AA)
-    cv2.rectangle(grouped_disp, (x,y),(x+width,y+height),(0,0,255),2)
+    elif boxType == "sublist":
+        if newList:
+            #move list text into <p> tags to be structure more clearly in line with
+            #new sublist <ol> tags
+            p = xml.SubElement(li, "p")
+            p.text = li.text
+            li.text = ""
+            
+            subOl = xml.SubElement(li, "ol")
+            newList = False
+
+        #find sublist identifier ( i), ii), etc. )
+        for i in range(len(elementString)):
+            if elementString[i] == ")":
+                sublistNum = elementString[0:i]
+                startIndex = i
+                break
+
+        subli = xml.SubElement(subOl, "li")
+        subli.set("key", li.get("key")+"."+sublistNum)
+
+        subli.text = elementString[startIndex:len(elementString)]
 
 
 #Get XML data into elementTree and write to file
