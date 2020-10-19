@@ -5,10 +5,11 @@ from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser
+from AIDataConverter import AIDataConverter
 from LegalDocMLconverter import LegalDocMLconverter
 from pdfminer.converter import XMLConverter as PDFMinerConverter
 
-input_path = "../sample/e2-external-moisture-3rd-edition-amendment-8.pdf"
+input_path = "../sample/NZBC-G4#3.4_14.pdf"
 output_path = "../output/output.xml"
 output_path2 = "../output/sample.xml"
 
@@ -19,6 +20,7 @@ with open(input_path, 'rb') as in_file:
     parser = PDFParser(in_file)
     doc = PDFDocument(parser)
     rsrcmgr = PDFResourceManager()
+    #device = AIDataConverter(rsrcmgr, outfp, laparams=LAParams())
     device = LegalDocMLconverter(rsrcmgr, outfp, laparams=LAParams())
     interpreter = PDFPageInterpreter(rsrcmgr, device)
     for page in PDFPage.create_pages(doc):
