@@ -9,7 +9,7 @@ from AIDataConverter import AIDataConverter
 from LegalDocMLconverter import LegalDocMLconverter
 from pdfminer.converter import XMLConverter as PDFMinerConverter
 
-input_path = "../sample/NZBC-G4#3.4_14.pdf"
+input_path = "../sample/NZBC-G4#3.4_13.pdf"
 output_path = "../output/output.xml"
 output_path2 = "../output/sample.xml"
 

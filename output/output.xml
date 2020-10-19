@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <documents>
-<document title="VENTILATION">
-	<paragraph key="1.3.3">
-		<p>1.3.3 For kitchens, bathrooms, toilets and laundries not located on the external wall, moisture and other contaminants must be ventilated to the outside by natural ventilation having:</p>
-		<ol>
-			<li>a) a passive stack ventilator, located in the</li>
-			<li>kitchen, bathroom, toilet or laundry, designed to extract a continuous airflow through the surrounding habitable spaces (see Paragraph 1.3.7 for passive stack ventilators), and</li>
-			<li>b) high level trickle ventilators, located within</li>
-			<li>the external wall or in building elements that are integrated within the external wall (see Paragraph 1.3.9 for trickle ventilators), and</li>
-			<li>c) permanent openings for airflow between the surrounding habitable spaces and the kitchen, bathroom, toilet or laundry of no less than 5% of the combined floor area of the spaces, and not compromising the privacy of the toilet or bathroom, and</li>
-			<li>d) a combined distance of the habitable space and the kitchen, bathroom, toilet or laundry measured between the external wall and furthest opposing wall of less than 10 metres.</li>
-			<li>Habitable spaces that have an external wall and open to a kitchen, bathroom, toilet or laundry with a passive stack ventilator</li>
-		</ol>
-	</paragraph>
-	<paragraph key="1.3.4">
-		<p>1.3.4 For habitable spaces with both an external wall and a permanent opening to a kitchen, bathroom, toilet or laundry, ventilation shall be achieved by:</p>
-		<ol>
-			<li>a) installing high level trickle ventilators, located within the external wall or building elements within the external wall (see Paragraph 1.3.9 for trickle ventilators), and</li>
-			<li>b) having a passive stack ventilator installed in the kitchen, bathroom, toilet or laundry, and</li>
-			<li>c) having an area of permanent opening</li>
-			<li>between the two spaces of no less than 5% of the combined floor area of the habitable space and the kitchen, bathroom, toilet or laundry, and not compromising the privacy of the toilet or bathroom, and</li>
-			<li>d) windows and/or other openings to the</li>
-			<li>outside with an net openable area of no less than 5% of the floor area, and</li>
-			<li>e) having a maximum dimension between</li>
-			<li>the external wall and the furthest internal opposing wall, when measured across the combined habitable space and the kitchen, bathroom, toilet, or laundry, of less than 10 metres.</li>
-		</ol>
-	</paragraph>
-	<paragraph key="1.3.5">
-		<p>1.3.5 For habitable spaces with an external wall and no permanent opening to surrounding spaces, ventilation must be achieved by having:</p>
-		<ol>
-			<li>a) windows and/or other openings to the</li>
-			<li>outside with an net openable area of no less than 5% of the floor area, and</li>
-			<li>b) high level trickle ventilators, located within the external wall or in building elements within the external wall (see Paragraph 1.3.9 for trickle ventilators), and</li>
-			<li>c) a distance between the external wall and opposing wall of the habitable spaces of less than 6 metres.</li>
-			<li>Habitable spaces ventilated via another habitable space</li>
-		</ol>
-	</paragraph>
-	<paragraph key="1.3.6">
-		<p>1.3.6 Ventilation of a habitable space without openings to the exterior via another habitable space must be achieved by:</p>
-		<ol>
-			<li>a) providing from the other habitable space</li>
-			<li>to outside, openable windows and/or other openings of net openable area of no less than 5% of the combined floor area of the combined habitable spaces, and</li>
-		</ol>
-	</paragraph>
-	<topic>Kitchens, bathrooms, toilets and laundries without an external wall</topic>
-	<topic>Habitable spaces that have an external wall and do not open to a kitchen, bathroom, toilet or laundry with a passive stack ventilator</topic>
-</document>
+	<document title="VENTILATION">
+		<paragraph key="1.3.3">
+			<p>1.3.3 For kitchens, bathrooms, toilets and laundries not located on the external wall, moisture and other contaminants must be ventilated to the outside by natural ventilation having:</p>
+			<ol>
+				<li>a) a passive stack ventilator, located in the</li>
+				<li>kitchen, bathroom, toilet or laundry, designed to extract a continuous airflow through the surrounding habitable spaces (see Paragraph 1.3.7 for passive stack ventilators), and</li>
+				<li>b) high level trickle ventilators, located within</li>
+				<li>the external wall or in building elements that are integrated within the external wall (see Paragraph 1.3.9 for trickle ventilators), and</li>
+				<li>c) permanent openings for airflow between the surrounding habitable spaces and the kitchen, bathroom, toilet or laundry of no less than 5% of the combined floor area of the spaces, and not compromising the privacy of the toilet or bathroom, and</li>
+				<li>d) a combined distance of the habitable space and the kitchen, bathroom, toilet or laundry measured between the external wall and furthest opposing wall of less than 10 metres.</li>
+				<li>Habitable spaces that have an external wall and open to a kitchen, bathroom, toilet or laundry with a passive stack ventilator</li>
+			</ol>
+		</paragraph>
+		<paragraph key="1.3.4">
+			<p>1.3.4 For habitable spaces with both an external wall and a permanent opening to a kitchen, bathroom, toilet or laundry, ventilation shall be achieved by:</p>
+			<ol>
+				<li>a) installing high level trickle ventilators, located within the external wall or building elements within the external wall (see Paragraph 1.3.9 for trickle ventilators), and</li>
+				<li>b) having a passive stack ventilator installed in the kitchen, bathroom, toilet or laundry, and</li>
+				<li>c) having an area of permanent opening</li>
+				<li>between the two spaces of no less than 5% of the combined floor area of the habitable space and the kitchen, bathroom, toilet or laundry, and not compromising the privacy of the toilet or bathroom, and</li>
+				<li>d) windows and/or other openings to the</li>
+				<li>outside with an net openable area of no less than 5% of the floor area, and</li>
+				<li>e) having a maximum dimension between</li>
+				<li>the external wall and the furthest internal opposing wall, when measured across the combined habitable space and the kitchen, bathroom, toilet, or laundry, of less than 10 metres.</li>
+			</ol>
+		</paragraph>
+		<paragraph key="1.3.5">
+			<p>1.3.5 For habitable spaces with an external wall and no permanent opening to surrounding spaces, ventilation must be achieved by having:</p>
+			<ol>
+				<li>a) windows and/or other openings to the</li>
+				<li>outside with an net openable area of no less than 5% of the floor area, and</li>
+				<li>b) high level trickle ventilators, located within the external wall or in building elements within the external wall (see Paragraph 1.3.9 for trickle ventilators), and</li>
+				<li>c) a distance between the external wall and opposing wall of the habitable spaces of less than 6 metres.</li>
+				<li>Habitable spaces ventilated via another habitable space</li>
+			</ol>
+		</paragraph>
+		<paragraph key="1.3.6">
+			<p>1.3.6 Ventilation of a habitable space without openings to the exterior via another habitable space must be achieved by:</p>
+			<ol>
+				<li>a) providing from the other habitable space</li>
+				<li>to outside, openable windows and/or other openings of net openable area of no less than 5% of the combined floor area of the combined habitable spaces, and</li>
+			</ol>
+		</paragraph>
+		<topic>Kitchens, bathrooms, toilets and laundries without an external wall</topic>
+		<topic>Habitable spaces that have an external wall and do not open to a kitchen, bathroom, toilet or laundry with a passive stack ventilator</topic>
+	</document>
 </documents>
