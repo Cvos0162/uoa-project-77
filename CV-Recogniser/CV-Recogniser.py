@@ -9,7 +9,6 @@ from pdf2image import convert_from_path
 
 import pytesseract
 
-
 class Box:
     def __init__(self, startX, startY, width, height):
         self.x = startX
@@ -19,26 +18,23 @@ class Box:
         self.type = "unclassified"
         self.content = ""
 
-#CONVERTING PDF TO IMAGE
-#pages = convert_from_path('NZBC-G4#3.4.pdf', 500)
+#Below code for getting images of pages for processing (only needs to be done once,
+#takes some time)
+#pages = convert_from_path('NZBC-G4#3.4.pdf', 500) #CONVERTING PDF TO IMAGE
+#pages[14].save('G4-page13.jpg', 'JPEG') #SAVING PAGE
 
-#SAVING FIRST PAGE
-#pages[20].save('page20.jpg', 'JPEG')
-
-#threshold value (image binary thresholding)
-threshold = 200
-
-#distance thresholds (contour association)
-cDistance = 55
+#Threshold parameters; these would need to be adjusted depending on the document
+threshold = 200 #threshold value (image binary thresholding)
+cDistance = 55 #distance threshold (contour association)
 
 #read page, convert to grayscale and initial threshold
-page = cv2.imread('page19.jpg')
+page = cv2.imread('Test-Pages\G4-page13.jpg')
 page_gray = cv2.cvtColor(page, cv2.COLOR_BGR2GRAY)
 ret, page_thresh = cv2.threshold(page_gray, threshold, 255, cv2.THRESH_BINARY)
 
 pageHeight,pageWidth,_ = page.shape
 
-#threshold: prevent contour around page border being considered
+#contour size threshold: i.e. prevent contour around page border being considered
 contourOversize = (pageHeight*pageWidth)/2
 
 page_disp = page.copy()
@@ -324,19 +320,12 @@ for box in boxes1:
         highSim = topicCheck
         high = 'topic'
 
-    #font = cv2.FONT_HERSHEY_SIMPLEX
-    #cv2.rectangle(grouped_disp, (box.x,box.y),(box.x+box.width,box.y+box.height),(0,0,255),2)
-
     if box.y > lowY-25 and box.y < lowY+25:
         print("HEADER: "+str(high)+", "+str(highSim))
-        #cv2.putText(grouped_disp, "H", (box.x,box.y), font,2,(0,0,255),2,cv2.LINE_AA)
     elif box.y > highY-25 and box.y < highY+25:
         print("FOOTER: "+str(high)+", "+str(highSim))
-        #cv2.putText(grouped_disp, "F", (box.x,box.y), font,2,(0,0,255),2,cv2.LINE_AA)
     else:
-        print("OK: "+str(high)+", "+str(highSim))
         box.type = high
-        #cv2.putText(grouped_disp, high, (box.x,box.y), font,2,(0,0,255),2,cv2.LINE_AA)
 
 
 #grouping of subsection + topic elements considered to be on the same line in the same
@@ -388,10 +377,6 @@ while i < len(boxes1):
     elementString = pytesseract.image_to_string(elementImg)
     elementString = elementString.replace('\n', ' ')
     boxes1[i].content = elementString
-    
-    #if len(elementString) < 1:
-    #    boxType = "unclassified"
-    #    boxes1[i].type = "unclassified"
 
     #this code could likely be removed with a more extensive set of templates, due to misclassification
     #of paragraphs as lists and lists and topics, this catches this by checking for the list/paragraph
@@ -492,8 +477,11 @@ newParagraph = True
 newList = True
 indented = False
 parentListX = 0
+endIndex = 0
+startIndex = 0
 
-#default elements incase for example list occurs before paragraph occurs (should be impossible)
+#default elements incase for example list occurs before paragraph occurs (would be impossible with full
+#document)
 subsection = xml.SubElement(root, "subsection")
 paragraph = xml.SubElement(subsection, "paragraph")
 li = xml.SubElement(paragraph, "li")
@@ -518,16 +506,17 @@ for i in range(len(boxes1)):
         i += 1
         continue
 
+    #Running on a laptop this additional code was needed before checking the ords below, 
+    #due to tesseract outputting empty strings for smaller elements, additionally random FF 
+    #(form-feed characters were present and are removed in the below line)
+    #elementString = elementString.replace('\f', '')
+    #if len(elementString) > 1:
+    #	...(ord code)
+    #else:
+    #	boxType = "topic"
+
     #check for initial number for subsection i.e. 1.1, 2.3, if not present reclassify as
     #topic and vice-versa
-	#Running on a laptop this additional code was needed before checking the ords below, 
-	#due to tesseract outputting empty strings for smaller elements, additionally random FF 
-	#(form-feed characters were present and are removed in the below line)
-	#elementString = elementString.replace('\f', '')
-	#if len(elementString) > 1:
-	#	...(ord code)
-	#else:
-	#	boxType = "topic"
     if boxType == "sub" and len(elementString) >= 3:
         if not ((ord(elementString[0]) > 47 and ord(elementString[0]) < 58) and elementString[1] == '.' and \
         (ord(elementString[2]) > 47 and ord(elementString[2]) < 58)):
@@ -566,6 +555,7 @@ for i in range(len(boxes1)):
 
     print("#####"+boxes1[i].type.upper()+"#####")
     print(boxes1[i].content)
+    print("["+str(len(boxes1[i].content))+"]")
     print("-----------------------")
 
     #logic for writing the box content into appropriate XML(legalDocML) format
