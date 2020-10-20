@@ -1,49 +1,62 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <documents>
-	<document title="VENTILATION">
-		<paragraph key="1.3.3">
-			<p>1.3.3 For kitchens, bathrooms, toilets and laundries not located on the external wall, moisture and other contaminants must be ventilated to the outside by natural ventilation having:</p>
-			<ol>
-				<li>a) a passive stack ventilator, located in the</li>
-				<li>kitchen, bathroom, toilet or laundry, designed to extract a continuous airflow through the surrounding habitable spaces (see Paragraph 1.3.7 for passive stack ventilators), and</li>
-				<li>b) high level trickle ventilators, located within</li>
-				<li>the external wall or in building elements that are integrated within the external wall (see Paragraph 1.3.9 for trickle ventilators), and</li>
-				<li>c) permanent openings for airflow between the surrounding habitable spaces and the kitchen, bathroom, toilet or laundry of no less than 5% of the combined floor area of the spaces, and not compromising the privacy of the toilet or bathroom, and</li>
-				<li>d) a combined distance of the habitable space and the kitchen, bathroom, toilet or laundry measured between the external wall and furthest opposing wall of less than 10 metres.</li>
-				<li>Habitable spaces that have an external wall and open to a kitchen, bathroom, toilet or laundry with a passive stack ventilator</li>
-			</ol>
-		</paragraph>
-		<paragraph key="1.3.4">
-			<p>1.3.4 For habitable spaces with both an external wall and a permanent opening to a kitchen, bathroom, toilet or laundry, ventilation shall be achieved by:</p>
-			<ol>
-				<li>a) installing high level trickle ventilators, located within the external wall or building elements within the external wall (see Paragraph 1.3.9 for trickle ventilators), and</li>
-				<li>b) having a passive stack ventilator installed in the kitchen, bathroom, toilet or laundry, and</li>
-				<li>c) having an area of permanent opening</li>
-				<li>between the two spaces of no less than 5% of the combined floor area of the habitable space and the kitchen, bathroom, toilet or laundry, and not compromising the privacy of the toilet or bathroom, and</li>
-				<li>d) windows and/or other openings to the</li>
-				<li>outside with an net openable area of no less than 5% of the floor area, and</li>
-				<li>e) having a maximum dimension between</li>
-				<li>the external wall and the furthest internal opposing wall, when measured across the combined habitable space and the kitchen, bathroom, toilet, or laundry, of less than 10 metres.</li>
-			</ol>
-		</paragraph>
-		<paragraph key="1.3.5">
-			<p>1.3.5 For habitable spaces with an external wall and no permanent opening to surrounding spaces, ventilation must be achieved by having:</p>
-			<ol>
-				<li>a) windows and/or other openings to the</li>
-				<li>outside with an net openable area of no less than 5% of the floor area, and</li>
-				<li>b) high level trickle ventilators, located within the external wall or in building elements within the external wall (see Paragraph 1.3.9 for trickle ventilators), and</li>
-				<li>c) a distance between the external wall and opposing wall of the habitable spaces of less than 6 metres.</li>
-				<li>Habitable spaces ventilated via another habitable space</li>
-			</ol>
-		</paragraph>
-		<paragraph key="1.3.6">
-			<p>1.3.6 Ventilation of a habitable space without openings to the exterior via another habitable space must be achieved by:</p>
-			<ol>
-				<li>a) providing from the other habitable space</li>
-				<li>to outside, openable windows and/or other openings of net openable area of no less than 5% of the combined floor area of the combined habitable spaces, and</li>
-			</ol>
-		</paragraph>
-		<topic>Kitchens, bathrooms, toilets and laundries without an external wall</topic>
-		<topic>Habitable spaces that have an external wall and do not open to a kitchen, bathroom, toilet or laundry with a passive stack ventilator</topic>
+	<document title="A c c e p t a b l e S o l u t i o n G 4 / A S1">
+		<section key="1.0" title="Ventilation">
+			<subsection key="1.1" title="Introduction">
+				<paragraph key="1.1.1">
+					<p>1.1.1 Ventilation of spaces within buildings is required to maintain air purity by a flow of outdoor air through the building envelope, with or without mechanical assistance.</p>
+					<commentary title="COMMENT:">If activities or environmental conditions adjacent to external natural ventilation openings produce air pollution in any of the forms listed in NZBC G4.3.3, it may be necessary to relocate the openings or use mechanical ventilation.</commentary>
+				</paragraph>
+				<paragraph key="1.1.2">
+					<p>1.1.2 Ventilation of spaces within buildings must be provided by natural ventilation (refer to Paragraphs 1.2 and 1.3), mechanical ventilation (refer to Paragraph 1.5), or a combination of mechanical and natural ventilation (refer to Paragraph 1.4).</p>
+				</paragraph>
+				<paragraph key="1.1.3">
+					<p>1.1.3 Buildings containing Type 5 fire alarm systems must have mechanical extract ventilation installed in kitchens.</p>
+					<commentary title="COMMENT:"></commentary>
+					<ol>
+						<li>Refer to Acceptable Solution F7/AS1 and Acceptable Solutions C/AS1– C/AS6 Appendix A for information on Type 5 fire alarms.</li>
+					</ol>
+				</paragraph>
+				<topic>Scope</topic>
+			</subsection>
+			<subsection key="1.2" title="Natural ventilation – General">
+				<paragraph key="1.2.1">
+					<p>1.2.1 Where natural ventilation is available via adjacent spaces, specific ventilation is not required to small spaces such as hallways and lobbies in household units.</p>
+				</paragraph>
+				<paragraph key="1.2.2">
+					<p>1.2.2 Natural ventilation of occupied spaces must be achieved by providing a net openable area of windows or other openings to the outside of no less than 5% of the floor area. The 5% floor area requirement does not apply to:</p>
+					<ol>
+						<li>a) occupied spaces in Commercial and</li>
+						<li>Industrial buildings where products listed in NZBC Clause G4.3.3 are generated (mechanical ventilation of these spaces is required), and</li>
+						<li>b) household units and accommodation units where there is only one external wall with opening windows (refer to Paragraph 1.3 for additional requirements if natural ventilation is used).</li>
+					</ol>
+				</paragraph>
+				<paragraph key="1.2.3">
+					<p>1.2.3 Openable building elements shall be constructed in a way that allows them to remain fixed in the open position as a means of ventilation during normal occupancy of the building.</p>
+					<commentary title="COMMENT:">1. The net openable area of windows or doors is measured on the face dimensions of the building element concerned. 2. Fixing in an open position of doors and windows used for ventilation is necessary to avoid injury or damage from sudden closure in the event of strong winds or other forces.</commentary>
+					<ol>
+						<li>3. Keeping water from entering the building must be considered for compliance with NZBC Clause E2 External Moisture.</li>
+					</ol>
+				</paragraph>
+				<paragraph key="1.2.4">
+					<p>1.2.4 Natural ventilation of car parks shall comply with the natural ventilation part of AS 1668.2 Section 7.</p>
+				</paragraph>
+			</subsection>
+			<subsection key="1.3" title="Natural ventilation of household units and accommodation units with one external wall">
+				<paragraph key="1.3.1">
+					<p>1.3.1 Paragraphs 1.3.2 to 1.3.9 specify the natural ventilation to both household units and accommodation units with only one external wall, such as those often found in apartments, hotels and motels.</p>
+				</paragraph>
+				<paragraph key="1.3.2">
+					<p>1.3.2 For kitchens, bathrooms, toilets and laundries located on the external wall, moisture and other contaminants must be ventilated to the outside by natural ventilation using either:</p>
+					<ol>
+						<li>a) windows and/or other openings to the</li>
+						<li>outside with a net openable area of no less than 5% of the floor area, or</li>
+						<li>b) high level trickle ventilators located through</li>
+						<li>the external wall or building elements within the external wall (see Paragraph 1.3.9 for trickle ventilators), where the distance between the external wall and opposing wall is less than 6 metres.</li>
+					</ol>
+				</paragraph>
+				<topic>Kitchens, bathrooms, toilets and laundries that have an external wall</topic>
+			</subsection>
+		</section>
 	</document>
 </documents>
