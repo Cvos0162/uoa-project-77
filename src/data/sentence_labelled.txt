@@ -1,0 +1,337 @@
+"102.047,800.572,218.267,807.572 26 0 182 A c c e p t a b l e  S o l u t i o n  G 4 / A S1 ",header
+"470.443,800.572,532.912,807.572 11 0 77 V E N T I L A T I O N ",header
+"102.047,763.484,417.247,788.484 0 0 650 Acceptable Solution G4/AS1 ",document
+"102.047,443.597,285.449,480.096 5 0 1092 1.1.3 Buildings containing Type 5 fire alarm  systems must have mechanical extract  ventilation installed in kitchens. ",paragraph
+"328.413,448.784,357.058,458.284 5 0 47 Scope ",topic
+"102.047,421.347,152.889,429.847 9 0 76 COMMENT:  ",commentary
+"102.047,387.055,305.052,417.055 0 0 984 Refer to Acceptable Solution F7/AS1 and Acceptable  Solutions C/AS1� C/AS6 Appendix A for information on  Type 5 fire alarms. ",commentary
+"62.287,385.435,87.475,398.438 0 0 90 Amend 3 Feb 2014 ",?
+"102.047,746.942,178.467,756.442 15 0 142 1.0  Ventilation ",section
+"102.047,722.099,186.482,731.599 17 0 161 1.1  Introduction  ",subsection
+"102.047,663.845,292.392,713.844 5 0 1672 1.1.1 Ventilation of spaces within buildings   is required to maintain air purity by a flow   of outdoor air through the building envelope,  with or without mechanical assistance.  ",paragraph
+"102.047,640.539,152.889,649.039 9 0 76 COMMENT:  ",commentary
+"102.047,584.247,292.912,636.247 0 0 1856 If activities or environmental conditions adjacent  to external natural ventilation openings produce air  pollution in any of the forms listed in NZBC G4.3.3,  it may be necessary to relocate the openings or use  mechanical ventilation. ",commentary
+"102.047,488.351,304.823,565.349 5 0 2384 1.1.2 Ventilation of spaces within buildings   must be provided by natural ventilation (refer to  Paragraphs 1.2 and 1.3), mechanical ventilation  (refer to Paragraph 1.5), or a combination of  mechanical and natural ventilation (refer to  Paragraph 1.4).  ",paragraph
+"102.047,351.257,259.517,360.757 33 0 313 1.2  Natural ventilation � General ",subsection
+"102.047,293.003,298.050,343.001 5 0 1605 1.2.1 Where natural ventilation is available   via adjacent spaces, specific ventilation is   not required to small spaces such as hallways  and lobbies in household units.  ",paragraph
+"102.047,221.249,304.711,284.747 5 0 2128 1.2.2 Natural ventilation of occupied spaces  must be achieved by providing a net openable  area of windows or other openings to the  outside of no less than 5% of the floor area.  The 5% floor area requirement does not apply to:  ",paragraph
+"102.047,203.693,270.372,213.193 0 0 361 a)  occupied spaces in Commercial and  ",li
+"113.381,150.493,292.566,199.893 0 0 1311 Industrial buildings where products listed   in NZBC Clause G4.3.3 are generated  (mechanical ventilation of these spaces   is required), and ",li
+"102.038,79.538,302.676,142.437 0 0 1776 b)  household units and accommodation units  where there is only one external wall with  opening windows (refer to Paragraph 1.3 for  additional requirements if natural ventilation  is used). ",li
+"328.413,704.543,534.871,754.541 5 0 1738 1.2.3 Openable building elements shall be  constructed in a way that allows them to remain  fixed in the open position as a means of ventilation  during normal occupancy of the building.  ",paragraph
+"328.819,682.182,379.661,690.682 9 0 76 COMMENT:  ",commentary
+"328.819,669.889,509.048,677.889 0 0 392 1.  The net openable area of windows or doors is  ",commentary
+"340.155,647.889,519.843,666.889 0 0 528 measured on the face dimensions of the building  element concerned. ",commentary
+"328.819,603.889,528.698,644.889 0 0 1424 2.  Fixing in an open position of doors and windows  used for ventilation is necessary to avoid injury or  damage from sudden closure in the event of strong  winds or other forces.  ",commentary
+"328.819,570.889,523.213,600.889 0 0 944 3.  Keeping water from entering the building must be  considered for compliance with NZBC Clause E2  External Moisture.  ",commentary
+"328.413,515.540,509.614,552.039 5 0 1054 1.2.4 Natural ventilation of car parks shall  comply with the natural ventilation part of   AS 1668.2 Section 7.  ",paragraph
+"328.413,466.539,502.264,503.038 94 0 893 1.3  Natural ventilation of household     units and accommodation units     with one external wall ",subsection
+"328.413,377.030,527.453,440.528 5 0 1900 1.3.1 Paragraphs 1.3.2 to 1.3.9 specify the  natural ventilation to both household units and  accommodation units with only one external  wall, such as those often found in apartments,  hotels and motels. ",paragraph
+"328.413,334.442,527.585,357.441 69 0 655 Kitchens, bathrooms, toilets and laundries  that have an external wall ",topic
+"328.413,276.188,531.048,326.186 6 0 1757 1.3.2 For kitchens, bathrooms, toilets and  laundries located on the external wall, moisture  and other contaminants must be ventilated to  the outside by natural ventilation using either: ",paragraph
+"328.413,258.432,503.785,267.932 0 0 380 a) windows and/or other openings to the  ",li
+"339.756,231.433,524.326,254.433 0 0 684 outside with a net openable area of no less  than 5% of the floor area, or ",li
+"328.413,213.678,524.207,223.178 0 0 475 b) high level trickle ventilators located through  ",li
+"339.747,146.180,529.542,209.678 0 0 1871 the external wall or building elements within  the external wall (see Paragraph 1.3.9 for  trickle ventilators), where the distance  between the external wall and opposing   wall is less than 6 metres. ",li
+"101.403,52.307,364.795,59.307 0 0 329 M I N I S T R Y   O F   B U S I N E S S ,   I N N O V A T I O N   A N D   E M P L O Y M E N T ",footer
+"449.296,52.230,521.932,59.230 0 0 112 1 4   F e b r u a r y   2 0 1 4 ",footer
+"561.274,54.745,580.588,72.745 0 0 36 13 ",page_number
+"62.362,800.573,124.832,807.573 11 0 77 VENTILATION",header
+"377.005,800.573,493.225,807.573 26 0 182 Acceptable Solution G4/AS1",header
+"300.250,52.294,493.781,59.294 0 0 238 DEPARTMENT OF BUILDING AND HOUSING",footer
+"71.364,52.126,145.826,59.126 0 0 105 1 November 2008",footer
+"62.362,733.442,261.534,756.442 67 0 636 Kitchens, bathrooms, toilets and laundries  without an external wall ",topic
+"62.362,661.688,256.920,725.187 5 0 1738 1.3.3 For kitchens, bathrooms, toilets and  laundries not located on the external wall,  moisture and other contaminants must be  ventilated to the outside by natural ventilation  having: ",paragraph
+"62.362,643.933,242.394,653.433 0 0 437 a) a passive stack ventilator, located in the  ",li
+"73.705,589.935,267.729,639.933 0 0 1662 kitchen, bathroom, toilet or laundry, designed  to extract a continuous airflow through the  surrounding habitable spaces (see Paragraph  1.3.7 for passive stack ventilators), and ",li
+"62.372,572.179,254.111,581.679 0 0 475 b) high level trickle ventilators, located within  ",li
+"73.715,531.681,264.006,568.180 0 0 1301 the external wall or in building elements that  are integrated within the external wall (see  Paragraph 1.3.9 for trickle ventilators), and ",li
+"62.372,446.428,251.602,523.425 0 0 2327 c) permanent openings for airflow between   the surrounding habitable spaces and the  kitchen, bathroom, toilet or laundry of no   less than 5% of the combined floor area   of the spaces, and not compromising the  privacy of the toilet or bathroom, and ",li
+"62.372,374.674,259.573,438.172 0 0 1681 d) a combined distance of the habitable space  and the kitchen, bathroom, toilet or laundry  measured between the external wall and  furthest opposing wall of less than   10 metres. ",li
+"62.362,318.586,266.298,355.085 126 0 1197 Habitable spaces that have an external wall  and open to a kitchen, bathroom, toilet or  laundry with a passive stack ventilator ",topic
+"62.362,260.332,268.031,310.331 5 0 1463 1.3.4 For habitable spaces with both an external  wall and a permanent opening to a kitchen,  bathroom, toilet or laundry, ventilation shall be  achieved by: ",paragraph
+"62.362,202.078,266.945,252.077 0 0 1672 a) installing high level trickle ventilators, located  within the external wall or building elements  within the external wall (see Paragraph 1.3.9   for trickle ventilators), and ",li
+"62.362,170.823,258.785,193.823 0 0 902 b) having a passive stack ventilator installed in  the kitchen, bathroom, toilet or laundry, and ",li
+"289.137,746.932,459.187,756.432 0 0 370 c) having an area of permanent opening  ",li
+"300.470,679.434,491.317,742.932 0 0 1909 between the two spaces of no less than 5%  of the combined floor area of the habitable  space and the kitchen, bathroom, toilet or  laundry, and not compromising the privacy   of the toilet or bathroom, and ",li
+"289.127,661.679,465.085,671.179 0 0 380 d) windows and/or other openings to the  ",li
+"300.470,634.680,473.349,657.679 0 0 712 outside with an net openable area of no   less than 5% of the floor area, and ",li
+"289.127,616.924,472.268,626.424 0 0 370 e) having a maximum dimension between   ",li
+"300.470,549.427,484.142,612.925 0 0 1710 the external wall and the furthest internal  opposing wall, when measured across the  combined habitable space and the kitchen,  bathroom, toilet, or laundry, of less than   10 metres. ",li
+"289.127,479.839,492.778,529.838 133 0 1263 Habitable spaces that have an external wall  and do not open to a kitchen, bathroom,  toilet or laundry with a passive stack  ventilator ",topic
+"289.127,435.085,492.698,471.584 5 0 1292 1.3.5 For habitable spaces with an external wall  and no permanent opening to surrounding  spaces, ventilation must be achieved by having: ",paragraph
+"289.127,417.329,464.498,426.829 0 0 380 a) windows and/or other openings to the  ",li
+"300.470,390.330,473.349,413.330 0 0 712 outside with an net openable area of no   less than 5% of the floor area, and ",li
+"289.127,332.076,491.544,382.075 0 0 1586 b) high level trickle ventilators, located within  the external wall or in building elements  within the external wall (see Paragraph 1.3.9  for trickle ventilators), and ",li
+"289.127,287.322,476.033,323.821 0 0 997 c) a distance between the external wall and  opposing wall of the habitable spaces of   less than 6 metres. ",li
+"289.127,244.733,474.853,267.733 55 0 522 Habitable spaces ventilated via another  habitable space ",topic
+"289.118,199.979,482.674,236.478 5 0 1140 1.3.6 Ventilation of a habitable space without  openings to the exterior via another habitable  space must be achieved by: ",paragraph
+"289.118,182.223,475.698,191.723 0 0 427 a) providing from the other habitable space   ",li
+"300.451,128.225,485.730,178.224 0 0 1472 to outside, openable windows and/or other  openings of net openable area of no less  than 5% of the combined floor area of the  combined habitable spaces, and  ",li
+"14.479,54.862,33.703,72.862 0 0 36 14 ",page_number
+"470.443,800.572,532.912,807.572 11 0 77 VENTILATION",header
+"102.047,800.572,218.267,807.572 26 0 182 Acceptable Solution G4/AS1",header
+"101.403,52.307,294.933,59.307 0 0 238 DEPARTMENT OF BUILDING AND HOUSING",footer
+"447.469,52.230,521.931,59.230 0 0 105 1 November 2008",footer
+"102.047,706.445,306.136,756.443 0 0 1653 b) providing high and low level trickle ventilators  located on the external wall (see Paragraph  1.3.9 for trickle ventilators), sized according  to the combined floor area, and ",li
+"102.047,688.689,283.155,698.189 0 0 399 c) providing an area of permanent opening  ",li
+"113.381,648.191,289.469,684.690 0 0 921 between the two spaces of no less than   5% of the combined floor area of the  habitable spaces, and ",li
+"102.047,589.937,301.631,639.935 0 0 1368 d) having a combined distance of the habitable  spaces, measured between the external   wall and furthest opposing wall, of less   than 6 metres.   ",li
+"102.047,560.848,216.292,570.348 25 0 237 Passive stack ventilators ",topic
+"102.047,516.093,305.075,552.592 5 0 1415 1.3.7 Passive stack ventilators consist of a vertical  ventilation shaft which uses air buoyancy to  ventilate spaces. Passive stack ventilators shall: ",paragraph
+"102.047,471.339,303.473,507.838 0 0 1045 a) have no connections from spaces other than  kitchens connecting to the kitchen passive  stack ventilator, and ",li
+"102.047,440.084,307.297,463.083 0 0 845 b) not be used in household units in combination  with mechanical ventilation systems, and ",li
+"102.038,408.829,252.149,431.828 0 0 579 c) be designed in accordance with   AS/NZS 4740 Section 3, and ",li
+"102.038,364.074,300.623,400.573 0 0 1045 d) be designed to achieve extract airflow rates  specified in AS 1668.2 Table B1, using the  following parameters: ",li
+"108.567,286.542,144.684,305.038 11 0 88 Figure 1:    ",figure
+"155.567,286.542,230.519,305.038 18 0 264 Fire Shunt System  Paragraph 1.3.7 ",figure
+"328.812,692.687,512.128,756.168 0 1 1093   Air Density    Gravitational Constant    Temperature Differential    Outside Ambient Temperature  T = 300K   Wind Velocity  ",li
+"470.928,719.686,528.816,756.960 0 3 306 r= 1.2 kg/m� g = 9.81 m/s� DT = 3K ",li
+"471.836,690.512,532.197,702.348 0 1 129 Vt = 0m/s, and ",li
+"328.821,674.930,503.604,684.430 0 0 408 e) be integrated into the building without  ",li
+"340.164,634.431,531.560,670.930 0 0 1301 decreasing the performance of the building  envelope and the partition walls of the building  for external moisture, fire and acoustics, and ",li
+"328.821,616.676,511.853,626.176 0 0 437 f)  be capable of drawing air through trickle  ",li
+"340.154,495.180,531.079,612.676 0 0 3448 ventilators or permanent openings from the  room or adjacent spaces. The permanent  openings to the surrounding spaces and  trickle ventilators to the outside shall have   an equivalent aerodynamic area greater   than the equivalent aerodynamic area of   the passive stack ventilator. This is to ensure  air can be drawn through the passive stack  ventilator effectively. ",li
+"328.811,477.425,471.858,486.925 0 0 313 g) when extracting from kitchens: ",li
+"328.811,459.669,331.452,469.169 0 0 9   ",?
+"328.821,405.671,331.462,415.171 0 0 9   ",?
+"328.821,365.173,331.462,374.673 0 0 9   ",?
+"352.913,419.171,527.944,455.670 0 0 912 separated shaft with a pressure-forming   intumescent fire collar around a   collapsible duct, and  ",li
+"340.154,338.174,522.731,469.169 0 0 1282 i)  maintain the fire separation of the fire         ii)  have ducting, downstream of the fire       iii) have connections that contain no more       ",li
+"352.922,378.672,533.440,401.672 0 0 437 collar, made of non-combustible material,   and ",li
+"352.922,338.174,533.451,361.173 0 0 788 than two bends and do not have any duct   that is more than 45� to the vertical, and ",li
+"561.234,54.745,580.629,72.745 0 0 36 15 ",page_number
+"62.362,800.573,124.832,807.573 11 0 77 VENTILATION",header
+"377.005,800.573,493.225,807.573 26 0 182 Acceptable Solution G4/AS1",header
+"86.483,616.936,257.212,639.935 0 0 389   common extract duct via a fire shunt of   ",li
+"300.250,52.294,493.781,59.294 0 0 238 DEPARTMENT OF BUILDING AND HOUSING",footer
+"71.364,52.126,145.826,59.126 0 0 105 1 November 2008",footer
+"62.362,746.943,65.003,756.443 0 0 9   ",?
+"62.381,643.935,65.022,653.435 0 0 9   ",?
+"62.391,589.937,65.032,599.437 0 0 9   ",?
+"62.400,549.438,65.041,558.938 0 0 9   ",?
+"73.705,719.944,236.124,756.443 0 0 389 iv) have the branch connection to the       ",li
+"86.464,719.944,269.069,742.944 0 0 655 common duct via a fire shunt of 1800 mm   in height (see Figure 1), and ",li
+"242.358,746.943,244.999,756.443 0 0 9   ",?
+"62.372,706.445,263.489,715.945 0 0 437   v)  have the fire shunt and the stack located   ",li
+"73.715,692.945,76.356,702.445 0 0 9   ",?
+"86.473,692.945,190.667,702.445 0 0 247 in a fire separated shaft.  ",li
+"62.381,675.190,264.242,684.690 0 0 446 h) when extracting from bathrooms, toilets and  ",li
+"73.724,661.690,114.772,671.190 0 0 95 laundries: ",paragraph
+"73.724,522.439,267.477,653.435 0 0 2821 i)  be installed in a fire separated shaft, and  ii)  have the branch connection to the       900 mm in height (see Figure 1), and iii) have connections that contain no more       iv) be ducting made of non-combustible     material, unless the common extract duct   is the only duct in the fire separated shaft.   ",li
+"86.492,562.938,267.020,585.937 0 0 788 than two bends and do not have any duct   that is more than 45� to the vertical, and ",li
+"62.410,450.686,265.410,514.184 0 0 1772 i)  have ventilation ducts and stacks that are  insulated in any unheated areas with a  minimum thickness of 25 mm of a material  having a thermal conductivity of no less than  0.04W/m2K, and ",li
+"68.031,384.971,98.136,392.971 8 0 64 Table 1: ",table
+"115.743,374.475,200.806,392.971 20 0 280 Number of occupants Paragraph 1.3.9  ",table
+"68.031,355.949,122.979,362.949 15 0 105 Household unit  ",table_li
+"186.793,355.949,249.303,362.949 16 0 112 Number of people ",table_li
+"68.031,345.449,157.542,352.449 23 0 161 accommodation unit type ",table_li
+"68.031,328.558,88.327,335.558 0 0 42 Studio ",table_li
+"68.031,311.359,102.563,318.359 0 0 63 1 bedroom ",table_li
+"68.031,294.160,102.563,301.160 0 0 63 2 bedroom ",table_li
+"216.102,328.558,219.994,335.558 0 0 7 2 ",table_li
+"216.102,311.359,219.994,318.359 0 0 7 2 ",table_li
+"216.102,294.160,219.994,301.160 0 0 7 3 ",table_li
+"68.031,276.961,147.688,283.961 0 0 161 Greater than 2 bedrooms ",table_li
+"187.284,276.961,248.810,283.961 0 0 119 Add 1 per bedroom ",table_li
+"289.134,733.436,487.221,756.435 5 0 522 1.3.8 The terminal of a passive stack ventilator  shall: ",paragraph
+"289.134,702.181,491.092,725.180 0 0 893 a) have an equivalent aerodynamic area greater  than the cross-sectional area of the stack, and ",li
+"289.133,684.425,480.325,693.925 0 0 446 b) extend above the roof to at least the ridge  ",li
+"300.476,670.926,329.514,680.426 0 0 66 height. ",li
+"287.291,651.009,338.133,659.509 9 0 76 COMMENT:  ",commentary
+"287.291,616.716,480.251,646.716 0 0 1176 To comply with b) the outlet of the passive stack  ventilator should be placed at the ridge of the roof to  reduce the adverse effects of wind gusts. ",commentary
+"289.133,587.839,371.988,597.339 19 0 180 Trickle ventilators ",topic
+"289.133,556.584,492.985,579.583 5 0 959 1.3.9 Trickle ventilators are devices that have an  opening to the outside. Trickle ventilators shall: ",paragraph
+"289.133,538.828,483.763,548.535 0 0 414 a) have an opening of no less than 2000 mm2  ",li
+"300.470,525.343,441.095,534.843 0 0 304 equivalent aerodynamic area, and ",li
+"289.127,507.588,456.672,517.088 0 0 370 b) be located to minimise draughts, and ",li
+"289.127,489.832,490.426,499.332 0 0 456 c) be secured to keep pests and insects out, and ",li
+"289.127,472.077,474.024,481.577 0 0 437 d) have acoustic attenuation, if required by   ",li
+"300.470,458.577,482.701,468.077 0 0 370 NZBC G6 Airborne and Impact Sound, and  ",li
+"289.127,440.822,493.693,450.322 0 0 484 e) be controllable and closable in all conditioned  ",li
+"289.127,382.568,475.096,419.067 0 0 969 f)  be installed in household units, providing  they do not contain mechanical supply  ventilation, and  ",li
+"289.127,324.314,489.767,374.312 0 0 1596 g) have the sum of the equivalent aerodynamic  area greater than the sum of the equivalent  area of the passive stack ventilator(s), if  installed in a household unit, and ",li
+"289.136,279.559,492.484,316.058 0 0 1149 h) have the equivalent aerodynamic area, based  on the number of occupants, for the space  as given in Tables 1 and 2, and  ",li
+"62.359,432.932,256.725,442.432 0 0 456 j)  have a condensation trap fitted to the part   ",li
+"73.702,419.432,213.490,428.932 0 0 332 of the duct above the roof level.   ",li
+"300.470,427.322,353.589,436.822 0 0 114 spaces, and  ",li
+"68.031,220.349,98.382,228.349 8 0 64 Table 2: ",table
+"115.743,209.852,353.767,228.349 58 0 584 Total required equivalent aerodynamic area per space (mm�) Paragraph 1.3.9 ",table
+"296.926,192.997,371.799,199.997 19 0 133 Number of occupants ",table_li
+"68.033,175.798,136.532,182.798 20 0 140 Ventilator locations ",table_li
+"68.019,158.907,126.102,165.907 0 0 126 High and low level ",table_li
+"68.026,141.708,114.420,148.708 0 0 105 High level only ",table_li
+"214.585,175.798,218.477,182.798 1 0 7 1 ",table_li
+"208.208,158.907,224.840,165.907 0 0 28 4000 ",table_li
+"208.236,141.708,224.822,148.708 0 0 28 3000 ",table_li
+"274.239,175.798,278.131,182.798 1 0 7 2 ",table_li
+"267.862,158.907,284.499,165.907 0 0 28 8000 ",table_li
+"267.862,141.708,284.508,148.708 0 0 28 6000 ",table_li
+"333.893,175.798,337.785,182.798 1 0 7 3 ",table_li
+"324.772,158.907,346.906,165.907 0 0 42 12,000 ",table_li
+"327.502,141.708,344.183,148.708 0 0 28 9000 ",table_li
+"393.547,175.798,397.439,182.798 1 0 7 4 ",table_li
+"384.314,158.907,406.678,165.907 0 0 42 16,000 ",table_li
+"384.433,141.708,406.567,148.708 0 0 42 12,000 ",table_li
+"453.201,175.798,457.093,182.798 1 0 7 5 ",table_li
+"443.863,158.907,466.436,165.907 0 0 42 20,000 ",table_li
+"444.010,141.708,466.300,148.708 0 0 42 15,000 ",table_li
+"14.388,54.862,33.801,72.862 0 0 36 16 ",page_number
+"470.443,800.572,532.912,807.572 11 0 77 VENTILATION",header
+"102.047,800.572,218.267,807.572 26 0 182 Acceptable Solution G4/AS1",header
+"101.403,52.307,294.933,59.307 0 0 238 DEPARTMENT OF BUILDING AND HOUSING",footer
+"447.469,52.230,521.931,59.230 0 0 105 1 November 2008",footer
+"102.047,746.943,274.199,756.443 0 0 408 i)  have, where high and low level trickle  ",li
+"328.812,746.934,512.033,756.434 0 0 370 d) having a maximum dimension between   ",li
+"340.155,679.436,523.607,742.934 0 0 1719 the external wall and the furthest internal  opposing wall, when measured across the  combined habitable space and the kitchen,  bathroom, toilet, or laundry, of less than   10 metres.  ",li
+"328.812,636.848,526.923,659.847 60 0 579 Combination ventilation with intermittent  mechanical extract  ",topic
+"328.803,565.094,518.716,628.592 5 0 2090 1.4.3 For habitable spaces with one external  wall and a permanent opening to a kitchen,  bathroom, laundry, or toilet, within which an  intermittent mechanical extract system is  installed, ventilation shall be achieved by: ",paragraph
+"328.803,547.339,493.645,556.839 0 0 399 a) integrating high and low level trickle  ",li
+"340.146,493.341,533.395,543.339 0 0 1567 ventilators, located within the external wall   or building elements that are integrated  within the external wall (see Paragraph 1.3.9   for trickle ventilators), and  ",li
+"328.812,448.586,526.458,485.085 0 0 1121 b) having a net openable area of windows and/ or other openings to the outside of no less  than 5% of the floor area, and ",li
+"328.812,417.331,505.291,440.331 0 0 750 c) having the kitchen, bathroom, toilet, or  laundry door undercut by 20 mm, and ",li
+"328.812,332.078,523.607,409.076 0 0 2080 d) having a maximum dimension between   the external wall and the furthest internal  opposing wall, when measured across the  combined habitable space and the kitchen,  bathroom, toilet, or laundry, of less than   6 metres.  ",li
+"337.323,312.576,396.665,321.076 10 0 85   COMMENT:  ",commentary
+"337.323,278.284,522.906,308.284 0 0 984 If Paragraphs 1.4.2 and 1.4.3 both apply, then           ventilation shall be achieved by complying with      Paragraph 1.4.3. ",commentary
+"113.390,652.447,300.598,742.944 0 0 2926 ventilators are required, the high and low  level trickle ventilators of approximately   the same equivalent aerodynamic area and  separated by a minimum of 1 metre. High  level trickle ventilators are located in the top  half of the wall. Low level trickle ventilators  are located in the bottom half of the wall. ",li
+"102.047,632.324,155.252,640.824 10 0 85 COMMENT:   ",commentary
+"102.047,609.032,304.902,628.032 0 0 768 There are a range of trickle ventilators, sometime called  background ventilators, on the market. ",commentary
+"102.047,555.860,286.821,578.860 40 0 380 1.4   Combined natural ventilation and     ",subsection
+"113.385,555.860,231.292,565.360 23 0 218   mechanical ventilation ",subsection
+"102.047,538.105,130.692,547.605 5 0 47 Scope ",topic
+"102.047,466.351,306.505,529.849 5 0 2109 1.4.1 This section specifies the combined  natural and mechanical ventilation requirements  for both household units and accommodation  units, with one external wall, such as those  often found in apartments, hotels and motels. ",paragraph
+"102.047,408.097,301.380,458.096 0 0 1662 Habitable spaces will be naturally ventilated,  and kitchens, bathrooms, toilets and laundries   will be ventilated by continuous or intermittent  mechanical extract ventilation. ",paragraph
+"102.047,365.509,295.408,388.508 59 0 560 Combination ventilation with continuous  mechanical extract  ",topic
+"102.047,293.755,302.771,357.253 5 0 2099 1.4.2 For habitable spaces with both one  external wall and a permanent opening to a  kitchen, bathroom, toilet or laundry, within  which a continuous mechanical extract system  is installed, ventilation shall be achieved by: ",paragraph
+"102.047,276.000,278.614,285.500 0 0 446 a) integrating high level trickle ventilators,  ",li
+"113.381,222.002,301.212,272.000 0 0 1415 located within the external wall or building  elements that are integrated within the  external wall (see Paragraph 1.3.9 for trickle  ventilators), and ",li
+"102.038,177.247,299.683,213.746 0 0 1121 b) having a net openable area of windows and/ or other openings to the outside of no less  than 5% of the floor area, and ",li
+"102.038,145.992,278.516,168.992 0 0 750 c) having the kitchen, bathroom, toilet, or  laundry door undercut by 20 mm, and ",li
+"561.333,54.745,580.521,72.745 0 0 36 17 ",page_number
+"62.362,800.573,124.832,807.573 11 0 77 VENTILATION",header
+"377.005,800.573,493.225,807.573 26 0 182 Acceptable Solution G4/AS1",header
+"300.250,52.294,493.781,59.294 0 0 238 DEPARTMENT OF BUILDING AND HOUSING",footer
+"71.364,52.126,145.826,59.126 0 0 105 1 November 2008",footer
+"62.362,746.942,194.281,756.442 28 0 266 1.5   Mechanical ventilation  ",subsection
+"62.362,715.687,244.913,738.686 5 0 722 1.5.1 Mechanical ventilation systems must  satisfy the following conditions:  ",paragraph
+"289.134,733.442,495.747,756.442 85 0 807 Extract ventilation from buildings containing  household units and accommodation units ",topic
+"289.134,715.687,476.938,725.187 5 0 427 1.5.2 Extract ventilation from kitchens must: ",paragraph
+"62.362,697.931,238.404,707.431 0 0 389 a) outdoor air supply shall be designed   ",li
+"289.134,697.931,460.533,707.431 0 0 399 a) maintain the fire separation of the fire  ",li
+"73.705,630.433,269.075,693.932 0 0 1890 and equipment installed to comply with   NZS 4303, or AS 1668.2 (excluding Table A1  and Sections 3 and 7), and to provide outdoor  air to occupied spaces at the flow rates given  in NZS 4303 Table 2, and ",li
+"62.362,585.679,251.515,622.178 0 0 1140 b) air-handling systems shall be installed   and maintained to the requirements of   AS/NZS 3666.1 and AS/NZS 3666.2, and  ",li
+"62.362,567.923,182.746,577.423 0 0 285 c) extract ventilation shall:  ",li
+"62.362,550.168,65.003,559.668 0 0 9   ",?
+"62.362,440.039,65.003,449.539 0 0 9   ",?
+"73.705,509.669,269.141,559.668 0 0 1586 i)  be constructed so that any products listed     in Clause G4.3.3 are removed, collected     or diluted by ventilation rates and     methods set out in AS 1668.2 Section 5  ",li
+"242.367,523.169,245.008,532.669 0 0 9   ",?
+"75.377,488.324,134.719,496.824 10 0 85   COMMENT:  ",commentary
+"75.377,465.032,268.431,484.032 0 0 432   Commercial kitchen extract ventilation is included     ",commentary
+"83.881,465.032,169.990,473.032 0 0 184 in AS 1668.2 Section 5. ",commentary
+"73.705,305.044,267.283,449.539 0 0 3933 ii)  where provided to remove moisture     and other contaminants from kitchens,     bathrooms, toilet spaces and laundries     in household units, exhaust the air to the     outside at flow rates given in AS 1668.2,     Table B1, and   iii) where provided for extract from kitchens,     bathrooms, toilets and laundries in       buildings containing household units     or accommodation units, refer to       Paragraphs 1.5.2 and 1.5.3. ",li
+"62.391,287.288,265.866,296.788 0 0 465 d) outdoor air intakes shall be located to avoid  ",li
+"73.734,246.790,250.939,283.289 0 0 1026 contamination from any local source in  accordance with AS 1668.2 Clause 4.3.1   and NZS 4303 Clause 5.5, and  ",li
+"62.391,229.034,263.838,238.534 0 0 446 e) recirculated air systems shall comply with   ",li
+"73.734,215.535,189.331,225.035 0 0 247 AS 1668.2 Clause 4.5, and  ",li
+"62.391,170.780,263.035,207.279 0 0 1206 f)  contaminated air discharge systems shall  discharge contaminated air in a way that  complies with AS 1668.2 Clause 5.10, and  ",li
+"62.391,153.025,241.675,162.525 0 0 399 g) filtration shall comply with AS 1668.2   ",li
+"73.734,139.525,139.157,149.025 0 0 142 Clause 4.4, and ",li
+"73.734,108.270,140.137,117.770 0 0 142 Code Series A.  ",li
+"62.391,121.770,252.445,131.270 0 0 389 h) commissioning shall comply with CIBSE  ",li
+"300.477,657.433,482.934,693.932 0 0 883 separated shaft with a pressure-forming  intumescent fire collar around a collapsible  duct, and ",li
+"289.134,626.178,486.337,649.177 0 0 798 b) have ducting, downstream of the fire collar,  made of non-combustible material, and ",li
+"289.134,581.423,491.223,617.922 0 0 893 c) have the branch connection to the common  extract duct located in a fire separated shaft,  and ",li
+"289.134,563.668,492.443,573.168 0 0 437 d) have the fire shunt and common extract duct  ",li
+"300.467,550.168,419.819,559.668 0 0 275 located in a separated shaft. ",li
+"289.124,518.913,493.511,541.913 5 0 665 1.5.3 Extract ventilation from bathrooms, toilets  and laundries must:  ",paragraph
+"289.124,501.158,470.759,510.658 0 0 427 a) be installed in a fire separated shaft, and ",li
+"289.124,456.403,487.546,492.902 0 0 931 b) have the branch connection to the common  extract duct via a fire shunt of 900 mm in  height, and  ",li
+"289.124,438.648,458.560,448.148 0 0 361 c) be ducting made of non-combustible  ",li
+"300.467,411.649,488.297,434.648 0 0 817 material, unless the common extract duct is  the only duct in the fire separated shaft.  ",li
+"289.124,393.893,380.254,403.393 20 0 190 Car park ventilation ",topic
+"289.124,349.139,483.378,385.638 5 0 1111 1.5.4 Mechanical ventilation of car parks shall  comply with the mechanical ventilation part   of AS 1668.2 Section 7.  ",paragraph
+"289.124,331.383,433.591,340.883 30 0 294 Positive and negative pressure  ",topic
+"289.124,273.129,493.268,323.128 5 0 1577 1.5.5 Building interiors ventilated by mechanical  systems incorporating filtration shall, except  where Paragraph 1.4.4 applies, be maintained   at a positive pressure.  ",paragraph
+"286.936,250.654,337.778,259.154 9 0 76 COMMENT:  ",commentary
+"286.936,205.361,492.104,246.361 0 0 1384 Positive pressure allows good control of intake air  filtration, whereas under negative pressure, unfiltered  air may be drawn through gaps and openings in building  elements.  ",commentary
+"289.124,138.134,494.247,188.133 5 0 1615 1.5.6 Spaces in which mechanical ventilation is  used to remove or collect contaminants shall be  maintained at negative pressure relative to  other spaces in the building.  ",paragraph
+"287.244,116.678,338.086,125.178 9 0 76 COMMENT:  ",commentary
+"287.244,93.386,446.660,112.386 0 0 688 Negative pressure reduces the likelihood of  contaminants being spread to other spaces. ",commentary
+"14.363,54.862,33.821,72.862 0 0 36 18 ",page_number
+"102.047,800.572,218.267,807.572 26 0 182 A c c e p t a b l e  S o l u t i o n  G 4 / A S1 ",header
+"470.443,800.572,532.912,807.572 11 0 77 V E N T I L A T I O N ",header
+"102.047,733.442,283.423,756.442 58 0 551 2.0   Ventilation of Spaces Containing   Gas-fuel Appliances ",section
+"102.047,708.600,213.229,718.100 23 0 218 2.1  Natural ventilation ",subsection
+"102.047,663.845,304.731,700.344 5 0 1187 2.1.1  Natural ventilation systems for appliances  burning gas fuel designed to operate under  natural draught conditions shall: ",paragraph
+"102.047,605.591,306.651,655.590 0 0 1491 a) Supply air under equal pressure conditions to  the burners and to the draught diverter i.e. in  the same room and as close as possible to  the appliance, and ",li
+"328.815,679.438,533.343,756.435 5 0 2555 2.1.7  A louvred door is also an acceptable  method of ventilation provided the bottom of  the free area extends to not less than 100 mm  above the floor, and the requisite high-level free  area is available from the level of 75 mm above  the draught diverter relief opening.  ",paragraph
+"328.824,607.684,533.517,671.182 5 0 2251 2.1.8  In plant room or boiler room installations,  low- and high-level vents may be combined into  a single opening, provided it reaches from floor  to ceiling and has a total free area equivalent to  that required for the two separate vents. ",paragraph
+"102.047,587.836,288.892,597.336 0 0 408 b) For non room-sealed appliances having a  ",li
+"328.834,589.929,458.112,599.429 26 0 247 2.2  Mechanical ventilation ",subsection
+"113.384,506.849,307.257,583.836 0 0 2418 combined gas input exceeding 1 kW for each  m3 of the space in which they are installed,  be provided with vents, in addition to the  ventilation required by Paragraphs 1.1 and  1.2. The vents shall be sized and located  according to Paragraphs 2.1.3 to 2.1.8. ",li
+"102.041,435.095,308.614,498.593 5 0 2289 2.1.2  Domestic gas cookers in non room-sealed  spaces which are also used for sleeping, require  permanent venting to the outside. The size of the  vent shall be appropriate to the gas input to the  cooker and shall be subject to specific design. ",paragraph
+"102.041,417.340,168.860,426.840 5 0 152 2.1.3  Vent sizes ",paragraph
+"102.041,359.086,306.815,409.084 0 0 1757 Two permanent vent openings, one high level  and one low level, shall be provided, each with  a free ventilation area per kW of gas input (of all  appliances in the space) of no less than: ",paragraph
+"102.041,341.330,298.577,351.032 0 0 452 a)   1200 mm2 for spaces vented directly to the  ",li
+"113.385,327.840,167.947,337.340 0 0 123 outside, and  ",li
+"113.383,296.588,148.509,306.088 0 0 76 spaces.  ",li
+"102.042,310.084,291.212,319.780 0 0 404 b) 2300 mm2 for spaces vented via adjacent  ",li
+"328.834,558.674,529.352,581.673 5 0 684 2.2.1 When mechanical ventilation is used, the  system shall have either: ",paragraph
+"328.834,540.918,493.274,550.418 0 0 351 a) Mechanical supply with mechanical  ",li
+"340.177,527.419,395.982,536.919 0 0 133 extraction, or ",li
+"328.834,509.663,512.489,519.163 0 0 408 b) Mechanical supply with natural exhaust.  ",li
+"328.834,491.908,513.872,501.408 5 0 418 2.2.2 A mechanical ventilation system shall: ",paragraph
+"328.843,474.152,508.490,483.652 0 0 399 a) For each kW of gas consumption (of all  ",li
+"340.186,447.153,534.256,470.153 0 0 617 appliances in the plant room) provide outdoor  air at the rate of: ",li
+"340.186,429.398,517.382,439.118 0 0 404 i)   3.6 m3/h for forced or induced draught  ",li
+"340.156,398.171,528.556,407.866 0 0 442 ii)    7.2 m3/h for appliances with atmospheric  ",li
+"352.914,415.926,418.517,425.426 0 0 142 appliances, and ",li
+"352.911,384.674,405.566,394.174 0 0 114 burners, and ",li
+"328.810,366.919,517.471,376.419 0 0 408 b) Remove exhaust air from the room either: ",li
+"340.153,349.163,530.337,358.663 0 0 456 i)  mechanically at one third the inlet rate, or  ",li
+"340.162,290.909,532.695,340.908 0 0 1501 ii)   naturally via high-level openings having a  free ventilation area of no less than 600  mm2 per kW of total gas consumption for  all appliances in the room.  ",li
+"328.843,429.398,331.484,438.898 0 0 9   ",?
+"328.813,398.171,331.454,407.671 0 0 9   ",?
+"328.810,349.163,331.451,358.663 0 0 9   ",?
+"328.819,331.408,331.460,340.908 0 0 9   ",?
+"102.040,251.833,308.277,288.332 5 0 1263 2.1.4  The vent opening areas given in Paragraph  2.1.3 may be halved for plant rooms and boiler  rooms infrequently occupied by people. ",paragraph
+"328.829,273.154,433.805,282.654 21 0 199 2.3  Flue construction ",subsection
+"328.838,255.398,458.588,264.898 5 0 285 2.3.1 A flue system shall have: ",paragraph
+"102.040,193.579,285.260,243.578 5 0 1282 2.1.5  Vent openings shall have vertical  dimensions of no less than 50 mm, and no  dimension of less than 6.0 mm in any   other direction. ",paragraph
+"102.040,121.826,300.885,185.324 5 0 1994 2.1.6  Low-level vents shall have their lower  edge no more than 100 mm above floor level,  and upper-level vents shall have their lower  edge no less than 75 mm above the top of the  draught diverter relief opening. ",paragraph
+"328.838,197.144,529.583,247.143 0 0 1453 a) The cross-sectional area of a natural draught  flue system external to the appliances, no  less than the cross-sectional area of the  appliance outlet, or ",li
+"328.838,179.389,487.142,188.889 0 0 342 b) The flue designed to comply with   ",li
+"340.181,152.390,532.666,175.389 0 0 446 AS/NZS 5601.1, section 6.7 and Appendix H,  and  ",li
+"542.954,150.150,569.138,163.152 0 0 96 Amend 3  Feb 2014 ",?
+"328.838,134.634,476.689,144.134 0 0 361 c) If a draught diverter is not fitted: ",li
+"101.403,52.307,364.795,59.307 0 0 329 M I N I S T R Y   O F   B U S I N E S S ,   I N N O V A T I O N   A N D   E M P L O Y M E N T ",footer
+"449.296,52.230,521.932,59.230 0 0 112 1 4   F e b r u a r y   2 0 1 4 ",footer
+"561.179,54.745,580.691,72.745 0 0 36 19 ",page_number
+"62.362,800.573,124.832,807.573 11 0 77 V E N T I L A T I O N ",header
+"377.005,800.573,493.225,807.573 26 0 182 A c c e p t a b l e S o l u t i o n G 4 / A S1 ",header
+"62.362,746.943,218.551,756.443 0 0 342   i)   flue products discharged to the  ",li
+"86.464,692.945,265.779,742.944 0 0 1482 atmosphere only at the flue terminal,  unless the discharge at other locations can  be achieved without hazard to persons,  property or appliance operation, and ",li
+"62.372,634.691,262.295,684.690 0 0 1558   ii)   a method of automatically shutting down  the main burners of forced or induced  draught appliances, should the normal  free discharge of the flue be interrupted.  ",li
+"62.381,616.936,171.027,626.436 24 0 228 2.3.2 Draught diverters  ",paragraph
+"62.381,545.182,256.117,608.680 0 0 1938 Draught diverter installations shall discharge   the total flue products including excess air   and draught diverter dilution air, at the flue  terminal without spillage from the skirt of the  draught diverter. ",paragraph
+"62.381,527.427,212.842,536.927 31 0 294 2.4  Flue locations on dwellings ",subsection
+"62.381,496.172,235.328,519.171 5 0 589 2.4.1 The location of a flue terminal on a  dwelling shall have: ",paragraph
+"62.381,478.416,230.092,487.916 0 0 380 a) Outlets from natural draught flues or  ",li
+"73.724,437.918,263.414,474.417 0 0 997 chimneys, positioned relative to surrounding  construction to avoid wind causing down  draughts in the flue, ",li
+"62.391,420.162,253.136,429.662 0 0 427 b) Flue pipes which extend through the roof,  ",li
+"73.734,406.663,184.986,416.163 0 0 247 terminated no closer than: ",li
+"62.391,388.907,253.694,398.407 0 0 408   i)  500 mm to the nearest part of any roof, ",li
+"62.400,371.152,236.114,380.652 0 0 418   ii)   2.0 m to the roof level of a flat roof  ",li
+"62.410,339.897,223.092,349.397 0 0 332   iii) 500 mm above any parapet, and ",li
+"86.502,357.652,253.601,367.152 0 0 380 intended for personal or public use, and ",li
+"62.419,322.141,237.822,331.641 0 0 399 c) Flues which terminate on the wall of a  ",li
+"73.762,268.143,262.908,318.142 0 0 1377 building located clear of inlets for outside air  in accordance with the minimum clearances  specified in AS/NZS 5601.1, section 6.9 and  Figure 6.2. ",li
+"62.419,236.888,225.838,259.888 45 0 427 3.0   Another Solution for Gas-fuel  Appliances ",section
+"25.841,279.807,52.697,292.809 0 0 96 Amend 3  Feb 2014 ",?
+"21.552,264.728,47.736,277.730 0 0 96 Amend 4  Jan 2017 ",?
+"25.587,209.199,50.775,222.201 0 0 90 Amend 3 Feb 2014 ",?
+"21.552,194.120,47.736,207.122 0 0 96 Amend 4  Jan 2017 ",?
+"62.419,171.547,259.239,221.546 5 0 1472 3.0.1  AS/NZS 5601.1 Sections 1, 3, 4, 5 and 6  and Appendices A � M and O - R is an  Acceptable Solution, but may exceed the  performance criteria of NZBC G4. ",paragraph
+"14.130,54.862,34.056,72.862 0 0 36 20 ",page_number
+"71.364,52.126,134.730,59.126 0 0 98 1   J a n u a r y   2 0 17 ",footer
+"230.383,52.294,493.775,59.294 0 0 329 M I N I S T R Y   O F   B U S I N E S S ,   I N N O V A T I O N   A N D   E M P L O Y M E N T ",footer
