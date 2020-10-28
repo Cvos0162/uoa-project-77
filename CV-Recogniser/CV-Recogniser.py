@@ -28,7 +28,7 @@ threshold = 200 #threshold value (image binary thresholding)
 cDistance = 55 #distance threshold (contour association)
 
 #read page, convert to grayscale and initial threshold
-page = cv2.imread('Test-Pages\G4-page13.jpg')
+page = cv2.imread('Test-Pages\G4-page14.jpg')
 page_gray = cv2.cvtColor(page, cv2.COLOR_BGR2GRAY)
 ret, page_thresh = cv2.threshold(page_gray, threshold, 255, cv2.THRESH_BINARY)
 
@@ -47,7 +47,7 @@ contours,_ = cv2.findContours(page_thresh, cv2.RETR_TREE,
                                       cv2.CHAIN_APPROX_NONE)
 
 #if you want to simply draw all contours
-cv2.drawContours(contour_disp, contours, -1, (0,0,255), 1)
+cv2.drawContours(contour_disp, contours, -1, (0,0,255), 2)
 
 boxes1 = []
 
@@ -550,7 +550,7 @@ for i in range(len(boxes1)):
         continue
 
     font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(grouped_disp, boxType, (x,y), font,2,(0,0,255),2,cv2.LINE_AA)
+    cv2.putText(grouped_disp, boxType, (x,y-5), font,2,(0,0,255),2,cv2.LINE_AA)
     cv2.rectangle(grouped_disp, (x,y),(x+width,y+height),(0,0,255),2)
 
     print("#####"+boxes1[i].type.upper()+"#####")
@@ -658,13 +658,14 @@ file.close()
 
 
 #image is 4134x5847 scale down
+#cv2.imshow('contourMassive', contour_disp)
 for i in range(3):
-    #thresh_disp = cv2.pyrDown(thresh_disp)
-    #contour_disp = cv2.pyrDown(contour_disp)
-    #if (i == 2):
-    #    cv2.imshow('groupedBig', grouped_disp)
+    if (i == 2):
+        cv2.imshow('groupedBig', grouped_disp)
+        #cv2.imshow('contourBig', contour_disp)
 
     grouped_disp = cv2.pyrDown(grouped_disp)
+    contour_disp = cv2.pyrDown(contour_disp)
 
 #cv2.imshow('page', page_disp)   
 #cv2.imshow('thresholded', thresh_disp)
