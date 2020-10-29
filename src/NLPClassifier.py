@@ -82,7 +82,7 @@ model.add(layers.Embedding(input_dim=vocab_size, output_dim=embedding_dim, weigh
 #model.add(layers.Embedding(vocab_size, embedding_dim, input_length=maxlen))
 model.add(layers.Conv1D(128, 5, activation='relu'))
 model.add(layers.GlobalMaxPool1D())
-model.add(layers.Dense(10, activation='relu'))
+#model.add(layers.Dense(10, activation='relu'))
 model.add(layers.Dense(len(tags), activation='sigmoid'))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -144,13 +144,13 @@ def plot_history(history):
 
 plot_history(history)
 
-#model_json = model.to_json()
-#with open("data/model.json", "w") as json_file:
-#    json_file.write(model_json)
-#
-#model.save("data/model.h5")
-#
-#import pickle
-#
-#with open('data/tokenizer.pickle', 'wb') as handle:
-#    pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+model_json = model.to_json()
+with open("data/model.json", "w") as json_file:
+    json_file.write(model_json)
+
+model.save("data/model.h5")
+
+import pickle
+
+with open('data/tokenizer.pickle', 'wb') as handle:
+    pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
