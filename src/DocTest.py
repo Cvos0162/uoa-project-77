@@ -10,7 +10,7 @@ def text_cleanup(text):
 def text_similarity(text):
     return
 
-new_soup = Soup(open("../output/output19.xml"), features="xml")
+new_soup = Soup(open("../output/output.xml"), features="xml")
 truth_soup = Soup(open("../sample/NZBC-G4v3.4text.xml"), features="xml")
 
 print("test accuracy of tagging")

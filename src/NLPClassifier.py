@@ -95,30 +95,6 @@ print("Training Accuracy: {:.4f}".format(accuracy))
 loss, accuracy = model.evaluate(X_test, Y_test, verbose=False)
 print("Testing Accuracy:  {:.4f}".format(accuracy))
 
-print(sentences_train[2])
-print(X_train[2].shape)
-
-print(X_train[2])
-print(Y_train[2])
-print(decode_tags[np.argmax(Y_train[2])])
-
-preds = model.predict(X_train[2:3])
-print(preds)
-print(decode_tags[np.argmax(preds)])
-
-what = "a) have an equivalent aerodynamic area greater  than the cross-sectional area of the stack"
-print("a) have an equivalent aerodynamic area greater  than the cross-sectional area of the stack")
-
-s_list = []
-s_list.append(what)
-X = tokenizer.texts_to_sequences(s_list)
-print(X)
-maxlen = 100
-X = pad_sequences(X, padding='post', maxlen=maxlen)
-print (X)
-preds = model.predict(X)
-print(decode_tags[np.argmax(preds)])
-
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
