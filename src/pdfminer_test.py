@@ -7,7 +7,8 @@ from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser
 from AIDataConverter import AIDataConverter
 from LegalDocMLconverter import LegalDocMLconverter
-from pdfminer.converter import XMLConverter as PDFMinerConverter
+from XMLconverter import XMLConverter
+from PDFMinerconverter import PDFMinerConverter
 
 input_path = "../sample/NZBC-G4#3.4_13.pdf"
 output_path = "../output/output.xml"
@@ -22,22 +23,11 @@ with open(input_path, 'rb') as in_file:
     rsrcmgr = PDFResourceManager()
     #device = AIDataConverter(rsrcmgr, outfp, laparams=LAParams())
     device = LegalDocMLconverter(rsrcmgr, outfp, laparams=LAParams())
+    #device = XMLConverter(rsrcmgr, outfp, laparams=LAParams())
+    #device = PDFMinerConverter(rsrcmgr, outfp, laparams=LAParams())
     interpreter = PDFPageInterpreter(rsrcmgr, device)
     for page in PDFPage.create_pages(doc):
         interpreter.process_page(page)
     #device.draw_layout(input_path, img_output_path)
     device.close()
 outfp.close()
-
-#outfp = open(output_path2, "wb")
-#with open(input_path, 'rb') as in_file:
-#    parser = PDFParser(in_file)
-#    doc = PDFDocument(parser)
-#    rsrcmgr = PDFResourceManager()
-#    device = PDFMinerConverter(rsrcmgr, outfp, laparams=LAParams())
-#    interpreter = PDFPageInterpreter(rsrcmgr, device)
-#    for page in PDFPage.create_pages(doc):
-#        interpreter.process_page(page)
-#    device.close()
-#outfp.close()
-

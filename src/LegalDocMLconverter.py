@@ -269,8 +269,10 @@ class LegalDocMLconverter(PDFConverter):
                     data = NLPSimpleBox("subsection", _key)
                     self.tree.create_node(_key, _key, parent=section_key, data=data)
                     self.classified.append(data)
-
-                self.tree.create_node(_paragraph.get_text(), _paragraph.key, parent=_key, data=_paragraph)
+                try:
+                    self.tree.create_node(_paragraph.get_text(), _paragraph.key, parent=_key, data=_paragraph)
+                except:
+                    self.tree.create_node(_paragraph.get_text(), _paragraph.key + ".0", parent=_key, data=_paragraph)
 
             new_classified = []
 
@@ -401,7 +403,7 @@ class LegalDocMLconverter(PDFConverter):
                 elif (tag == "?"):
                     None
                 else:
-                    self.write(self.decode_tags(preds)+ s + "\n")
+                    None
             
 
             branches = self.tree.is_branch(node.identifier)

@@ -30,7 +30,7 @@ from pdf2image import convert_from_path
 
 from pdfminer.converter import PDFConverter
 
-class XMLConverter(PDFConverter):
+class PDFMinerConverter(PDFConverter):
 
     CONTROL = re.compile('[\x00-\x08\x0b-\x0c\x0e-\x1f]')
 
@@ -104,39 +104,6 @@ class XMLConverter(PDFConverter):
 
         self.items.sort(key=get_y0, reverse=True)
 
-        def group_textboxes(items):
-            new_items = []
-            prev = items[0]
-            for item in items[1:]:
-                if isinstance(prev, LTChar):
-                    box = LTTextBox()
-                    box.add(prev)
-                    box.set_bbox((prev.x0, prev.y0, prev.x1, prev.y1))
-                    prev = box
-                y_diff = (prev.y0 - item.y1)
-                x_diff = (item.x0 - prev.x1)
-                if (y_diff < get_size(prev)/2 or y_diff > get_size(prev)/2) and x_diff < get_size(prev) and x_diff >= -get_size(prev)/2:
-                    xs = [item.x0, item.x1, prev.x0, prev.x1]
-                    ys = [item.y0, item.y1, prev.y0, prev.y1]
-                    prev.add(item)
-                    prev.set_bbox((min(xs), min(ys), max(xs), max(ys)))
-                elif (y_diff < get_size(prev)/2 or y_diff > get_size(prev)/2) and (item.x0 - prev.x0) < get_size(prev)/2 and (item.x1 - prev.x1) > -get_size(prev)/2:
-                    vert = LTTextBoxVertical()
-                    xs = [item.x0, item.x1, prev.x0, prev.x1]
-                    ys = [item.y0, item.y1, prev.y0, prev.y1]
-                    for child in prev:
-                        vert.add(child)
-                    vert.add(item)
-                    vert.set_bbox((min(xs), min(ys), max(xs), max(ys)))
-                    prev = vert
-                else:
-                    new_items.append(prev)
-                    prev = item
-                #new_items.append(prev)
-                #prev = item
-            new_items.append(prev)
-            return new_items
-
         def render(item):
             if isinstance(item, LTTextBox):
                 wmode = ''
@@ -145,62 +112,12 @@ class XMLConverter(PDFConverter):
                 s = '<textbox id="%d" bbox="%s"%s>\n' %\
                     (item.index, bbox2str(item.bbox), wmode)
                 self.write(s)
-                #self.write(item.get_text())
-                self.write(highlights(item))
+                self.write(item.get_text())
                 self.write('</textbox>\n')
             else:
                 assert False, str(('Unhandled', item))
-            
-        def highlights(item):
-            s = ''
-            prev_bold = False
-            prev_italic = False
-            for child in item:
-                if isinstance(child, LTChar):
-                    if 'Bold' in child.fontname:
-                        if prev_italic:
-                            s += '</i>'
-                        if not prev_bold:
-                            s += '<b>'
-                            
-                        prev_bold = True
-                        prev_italic = False
-                    elif 'Italic' in child.fontname:
-                        if prev_bold:
-                            s += '</b>'
-                        if not prev_italic:
-                            s += '<i>'
-                        
-                        prev_italic = True
-                        prev_bold = False
-                    else:
-                        if prev_bold:
-                            s += '</b>'
-                        elif prev_italic:
-                            s += '</i>'
-                        prev_bold = False
-                        prev_italic = False
-                    
-                    s += child.get_text()
-                
-                elif isinstance(child, LTTextLine):
-                    s += highlights(child)
-                elif isinstance(child, LTTextBox):
-                    s += highlights(child)
-                else:
-                    if child.get_text() == '\n':
-                        if prev_bold:
-                            s += '</b>'
-                        elif prev_italic:
-                            s += '</i>'
-                        
-                        prev_bold = False
-                        prev_italic = False
-                    s +=  child.get_text()
-            return s
 
-        self.textboxes = group_textboxes(self.items)
-        for item in self.textboxes:
+        for item in self.items:
             render(item)
         return
 
@@ -220,7 +137,7 @@ class XMLConverter(PDFConverter):
         #print(width, height)
         #print(height)
         scale = height/int(self.page_height)
-        for item in self.textboxes:
+        for item in self.items:
             if isinstance(item, LTTextBox) or isinstance(item, LTChar):
                 #render cv2
                 

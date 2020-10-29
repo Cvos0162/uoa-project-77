@@ -106,6 +106,19 @@ preds = model.predict(X_train[2:3])
 print(preds)
 print(decode_tags[np.argmax(preds)])
 
+what = "a) have an equivalent aerodynamic area greater  than the cross-sectional area of the stack"
+print("a) have an equivalent aerodynamic area greater  than the cross-sectional area of the stack")
+
+s_list = []
+s_list.append(what)
+X = tokenizer.texts_to_sequences(s_list)
+print(X)
+maxlen = 100
+X = pad_sequences(X, padding='post', maxlen=maxlen)
+print (X)
+preds = model.predict(X)
+print(decode_tags[np.argmax(preds)])
+
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
@@ -131,13 +144,13 @@ def plot_history(history):
 
 plot_history(history)
 
-model_json = model.to_json()
-with open("data/model.json", "w") as json_file:
-    json_file.write(model_json)
-
-model.save("data/model.h5")
-
-import pickle
-
-with open('data/tokenizer.pickle', 'wb') as handle:
-    pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+#model_json = model.to_json()
+#with open("data/model.json", "w") as json_file:
+#    json_file.write(model_json)
+#
+#model.save("data/model.h5")
+#
+#import pickle
+#
+#with open('data/tokenizer.pickle', 'wb') as handle:
+#    pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
