@@ -82,7 +82,7 @@ model.add(layers.Embedding(input_dim=vocab_size, output_dim=embedding_dim, weigh
 #model.add(layers.Embedding(vocab_size, embedding_dim, input_length=maxlen))
 model.add(layers.Conv1D(128, 5, activation='relu'))
 model.add(layers.GlobalMaxPool1D())
-model.add(layers.Dense(10, activation='relu'))
+#model.add(layers.Dense(10, activation='relu'))
 model.add(layers.Dense(len(tags), activation='sigmoid'))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -94,17 +94,6 @@ loss, accuracy = model.evaluate(X_train, Y_train, verbose=False)
 print("Training Accuracy: {:.4f}".format(accuracy))
 loss, accuracy = model.evaluate(X_test, Y_test, verbose=False)
 print("Testing Accuracy:  {:.4f}".format(accuracy))
-
-print(sentences_train[2])
-print(X_train[2].shape)
-
-print(X_train[2])
-print(Y_train[2])
-print(decode_tags[np.argmax(Y_train[2])])
-
-preds = model.predict(X_train[2:3])
-print(preds)
-print(decode_tags[np.argmax(preds)])
 
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
