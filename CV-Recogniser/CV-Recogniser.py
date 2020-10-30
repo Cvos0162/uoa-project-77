@@ -1,10 +1,16 @@
+#Instructions for running:
+#1: ensure appropriate libraries/source files are all installed including numpy, openCV, 
+#   pdf2image (which may involve poppler/others), tesseract.
+#2: edit lines 37 to desired document; ensuring path is correct
+#3: output.xml should be produced in same directory as this python script.
+
+
 import xml.etree.ElementTree as xml
 import xml.dom.minidom as minidom
 
 import math
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
 from pdf2image import convert_from_path
 
 import pytesseract
